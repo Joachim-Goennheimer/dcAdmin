@@ -1,0 +1,65 @@
+<!-- <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+
+            <div class="navbar-header">
+                    <a class="navbar-brand" routerLink="#"><fa-icon [icon]="faFile"></fa-icon></a>
+            </div>
+            
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a routerLink="#">HOME</a></li>
+                </ul>
+            </div>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="/"><fa-icon [icon]="faFile"></fa-icon></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/overview">Overview <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/">Document View</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" routerLink="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/">Action</a>
+                <a class="dropdown-item" routerLink="/">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" routerLink="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            <ng-template [ngIf]="!authService.isAuthenticated()">
+                    <li class="nav-item active"><a routerLink="/login" class="nav-link">Login</a></li>
+                    <li class="nav-item active"><a routerLink="/register" class="nav-link">Register</a></li>
+                </ng-template>
+            
+            <ng-template [ngIf]="authService.isAuthenticated()">
+                    <li class="nav-item active"><a routerLink="/" (click) = "onLogout()" class="nav-link">Logout</a></li>
+                    <li class="nav-item avatar">
+                        <a class="nav-link p-0" routerLink="/">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-7.jpg" class="rounded-circle z-depth-0"
+                            alt="avatar image" height="35">
+                        </a>
+                    </li>
+            </ng-template>
+            
+          </ul>
+        </div>
+      </nav>
+
