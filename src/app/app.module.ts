@@ -2,15 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { MatTableModule } from '@angular/material'  
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatInputModule, MatCheckboxModule } from '@angular/material';
+// import { SelectionModel } from '@angular/cdk/collections';
+
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './auth/signin/signin.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { AuthService } from './auth/auth.service';
-import { DataModelService } from './datamodel.service';
+import { DataModelService } from './datamodel/datamodel.service';
 import { OverviewComponent } from './overview/overview.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -30,6 +33,7 @@ const appRoutes: Routes = [
   { path: "documentView", component: DocumentsComponent },
   { path: "login", component: SigninComponent },
   { path: "register", component: SignupComponent },
+  { path: "userProfile", component: UserProfileComponent }
   // { path: "category/structure", component: AppComponent }
 ];
 
@@ -39,6 +43,7 @@ const appRoutes: Routes = [
     OverviewComponent,
     SignupComponent,
     SigninComponent,
+    UserProfileComponent,
     NavigationComponent,
     ToDoListComponent,
     DataSummaryComponent,
@@ -57,7 +62,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     PdfViewerModule,
     NoopAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [DataModelService, AuthService],
   bootstrap: [AppComponent]

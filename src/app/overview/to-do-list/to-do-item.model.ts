@@ -1,15 +1,10 @@
-
-export class ToDoItem {
-    title: string;
-    description: string;
-    importance: number;
-
-
-    constructor(title: string, description: string, importance: number){
-
-        this.title = title;
-        this.description = description;
-        this.importance = importance;
-
+export class TodoItem {
+    id: number;
+    title: string = '';
+    complete: boolean = false;
+  
+    constructor(values: Object = {}) {
+      Object.assign(this, values);
     }
-}
+  }
+  

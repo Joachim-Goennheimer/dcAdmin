@@ -1,4 +1,29 @@
+<section class="todoapp">
+        <header class="header">
+          <!-- <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodoItem.title" (keyup.enter)="addTodo()"> -->
+          <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="addon-wrapping"><fa-icon [icon]="faBriefcase"></fa-icon></span>
+                </div>
+                <input type="text" class="new-todo form-control" placeholder="To Do" [(ngModel)]="newTodoItem.title" (keyup.enter)="addTodo()">
+            </div>
+        </header>
+        <section class="main" *ngIf="todos.length > 0">
+            
+          <ul class="todo-list list-group">
 
-<ul>
-    <li *ngFor="let toDo of toDoItems">{{ toDo.title }}</li>
-</ul>
+            <li *ngFor="let todo of todos list-group-item" class="list-group-item" [class.completed]="todo.complete">
+              <div class="view" (click)="toggleTodoComplete(todo)">
+                <!-- <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete"> -->
+                <label [ngClass]="todo.complete ? 'completed': notcompleted">{{todo.title}}</label>
+                <fa-icon [icon]="faTrash" class="destroy left-buffer" (click)="removeTodo(todo)"></fa-icon>
+                <!-- <button class="destroy" (click)="removeTodo(todo)"></button> -->
+              </div>
+            </li>
+          </ul>
+        </section>
+        <footer class="footer" *ngIf="todos.length > 0">
+          <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+        </footer>
+</section>
+      
