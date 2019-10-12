@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
+import { DocumentsService } from '../../documents.service';
+import { saveAs } from 'file-saver';
 
 
 
@@ -43,6 +45,9 @@ export class DocListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  constructor(private dcService: DocumentsService){
+
+  }
   
   selection = new SelectionModel<DocumentBP>(allowMultiSelect, initialSelection);
 
@@ -53,25 +58,38 @@ export class DocListComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dcService.getDocumentsInformation();
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+  toggleAndLoad(row){
+    this.selection.toggle(row);
+    
+    this.dcService.getDocumentPDF(5)
+      // .subscribe(
+      //   (response) => {
+      //     var blob = new Blob([response], { type: 'application/pdf' });
+      //   },
+      //   (error) => console.log(error)
+      // );
   }
+
+  // isAllSelected() {
+  //   const numSelected = this.selection.selected.length;
+  //   const numRows = this.dataSource.data.length;
+  //   return numSelected === numRows;
+  // }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
+  // masterToggle() {
+  //   this.isAllSelected() ?
+  //       this.selection.clear() :
+  //       this.dataSource.data.forEach(row => this.selection.select(row));
+  // }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: DocumentBP): string {
     if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+      // return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.year + 1}`;
   }

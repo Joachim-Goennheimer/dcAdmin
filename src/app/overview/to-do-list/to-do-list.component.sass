@@ -1,16 +1,48 @@
+$base-white: #f7f9fb
+$light-background-blue: #8fc1e3
+$normal-background-blue: #5085a5
+$dark-background-blue: #31708e
+$dark-grey-green: #687864
+
+
 .main
     height: 200px
     overflow: auto
 
 .new-todo
-    background-color: green
-
     &:focus
         outline: none
-.left-buffer
-    margin-left: 10px
+
+input
+    &:focus
+        outline: none !important
+        border-color: $dark-grey-green
+        outline: 0px !important
+        -webkit-appearance: none
+        box-shadow: none !important
+// textarea
+//     &:focus
+//         outline: none !important
+//         outline: 0px !important
+//         -webkit-appearance: none
+//         box-shadow: none !important
+
+
+// select
+//     &:focus
+//         outline: none !important
+//         outline: 0px !important
+//         -webkit-appearance: none
+//         box-shadow: none !important
+
+.right-buffer
+    margin-right: 10px
+
+.list-group-item
+    // line-height: 12px
 
 .completed
     text-decoration: line-through
+    background-color: rgb(104, 120, 100, 0.1)
 
 .notcompleted

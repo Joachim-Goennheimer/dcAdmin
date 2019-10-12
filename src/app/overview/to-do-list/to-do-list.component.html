@@ -8,21 +8,21 @@
                 <input type="text" class="new-todo form-control" placeholder="To Do" [(ngModel)]="newTodoItem.title" (keyup.enter)="addTodo()">
             </div>
         </header>
-        <section class="main" *ngIf="todos.length > 0">
+        <section class="main">
             
           <ul class="todo-list list-group">
 
-            <li *ngFor="let todo of todos list-group-item" class="list-group-item" [class.completed]="todo.complete">
+            <li *ngFor="let todo of todos list-group-item" class="list-group-item py-1" [class.completed]="todo.complete">
               <div class="view" (click)="toggleTodoComplete(todo)">
                 <!-- <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete"> -->
-                <label [ngClass]="todo.complete ? 'completed': notcompleted">{{todo.title}}</label>
-                <fa-icon [icon]="faTrash" class="destroy left-buffer" (click)="removeTodo(todo)"></fa-icon>
+                <fa-icon [icon]="faTrash" class="destroy right-buffer" (click)="removeTodo(todo)"></fa-icon>
+                <label>{{todo.title}}</label>
                 <!-- <button class="destroy" (click)="removeTodo(todo)"></button> -->
               </div>
             </li>
           </ul>
         </section>
-        <footer class="footer" *ngIf="todos.length > 0">
+        <footer class="footer">
           <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
         </footer>
 </section>

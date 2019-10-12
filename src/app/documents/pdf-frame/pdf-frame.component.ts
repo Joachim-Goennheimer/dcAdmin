@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { DocumentsService } from '../../documents.service';
 
 @Component({
   selector: 'app-pdf-frame',
@@ -8,14 +9,21 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
 })
 export class PdfFrameComponent implements OnInit {
 
-  pdfSrc: string = './assets/ProblemSheet03(1).pdf';
+  // pdfSrc: string = './assets/ProblemSheet03(1).pdf';
+  pdfSrc: Object;
   page: number = 1;
   totalPages: number;
   isLoaded: boolean = false;
 
-  constructor() { }
+  constructor(private dcService: DocumentsService) { }
 
   ngOnInit() {
+    this.dcService.pdfSubject.subscribe(
+      (pdfData: Blob) => {
+        this.pdfSrc = pdfData
+      }
+    )
+
   }
 
 
