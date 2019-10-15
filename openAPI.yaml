@@ -1,0 +1,192 @@
+openapi: 3.0.0
+servers:
+  - url: 'https://webfileviewerproject.herokuapp.com/'
+info:
+  description: File Viewer Application for Web Engineering II lecture
+  version: "1.0.0-oas3"
+  title: FileViewer
+  contact:
+    email: Leon.Feldmann@ibm.com
+tags:
+  - name: documents
+    description: requests concerning documents
+  - name: auth 
+    description: requests regarding authentication
+paths:
+  '/documents':
+      get:
+        tags:
+          - documents
+        summary: Retrieve all file info for current user
+        responses:
+          '200':
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/documentInfoArray'
+  '/documentPDF/{id}':
+    get:
+      tags:
+        - documents
+      summary: receive document with specifications
+      parameters:
+        - name: id
+          in: path
+          description: database identifier
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/pdf:
+              schema:
+                format: attachment
+  '/importDocuments':
+    get:
+      tags:
+        - documents
+      summary: receive document count and start receiving data
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/documentCount'
+  '/currentDocumentData':
+    post:
+      tags:
+        - documents
+      summary: receive document specifications
+      requestBody:
+       content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/documentInfoNoID'
+      responses:
+        '200':
+          description: successful operation
+  '/register':
+    post:
+      tags:
+        - auth
+      summary: receive user credentials for signup
+      requestBody:
+       content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/register'
+      responses:
+        '200':
+          description: successful operation
+  '/login':
+    post:
+      tags:
+        - auth
+      summary: receive user credentials for authentication
+      requestBody:
+       content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/login'
+      responses:
+        '200':
+          description: successful operation
+          content:
+           application/json:
+            schema:
+             $ref: '#/components/schemas/loginResult'
+components:
+  schemas:
+    documentInfoNoID:
+      type: object
+      required:
+        - year
+        - month
+        - institution
+        - importance
+        - description
+      properties:
+        year:
+          type: integer
+          format: int64
+        month:
+          type: integer
+          format: int64
+        institution:
+          type: string
+          maxLength: 50
+        importance:
+          type: integer
+          format: int64
+        description:
+          type: string
+          maxLength: 200
+    documentCount:
+      type: object
+      properties:
+        numberOfFiles:
+          type: integer
+          format: int64
+    documentInfo:
+      type: object
+      properties:
+        year:
+          type: integer
+          format: int64
+        month:
+          type: integer
+          format: int64
+        institution:
+          type: string
+          maxLength: 50
+        importance:
+          type: integer
+          format: int64
+        description:
+          type: string
+          maxLength: 200
+        id:
+          type: string
+    documentInfoArray:
+      type: object
+      properties:
+        documentInfo:
+          type: array
+          items: 
+            $ref: '#/components/schemas/documentInfo'
+    register:
+      type: object
+      required:
+        - email
+        - username
+        - password
+      properties:
+        email: 
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    login:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    loginResult:
+      type: object
+      properties:
+        loginStatus:
+          type: boolean
+        token:
+          type: string

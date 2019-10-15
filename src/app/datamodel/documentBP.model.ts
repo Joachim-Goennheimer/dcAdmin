@@ -2,17 +2,21 @@ import { Institution } from './institution.model';
 
 export class DocumentBP {
 
+    id: number;
     year: number;
     month: number;
-    day: number;
-    institution: Institution;
+    institution: string;
+    importance: number;
+    description: string;
 
 
-    constructor(year: number, month: number, day: number, institutionName: string){
+    constructor(id: number,year: number, month: number, institutionName: string, importance: number, description: string){
+        this.id = id;
         this.year = year;
         this.month = month;
-        this.day = day;
-        this.institution = new Institution(institutionName);
+        this.institution = institutionName;
+        this.importance = importance;
+        this.description = description;
 
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { MomentDateAdapter} from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -55,6 +55,29 @@ export class DocumentFormComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  onSubmit(form: NgForm){
+    // const documentInformation = {
+    //   year: this.date.value.year(),
+    //   month: this.date.value.month(),
+    //   institution: form.form.value.institution,
+    //   importance: form.form.value.importance,
+    //   description: form.form.value.description
+    // }
+    const documentInformation = {
+      "year": "2019",
+      "month": "05",
+      "institution": "TestInstitution",
+      "importance": "2",
+      "description": "example15"
+    }
+    this.dcService.saveDocument(documentInformation);
+    console.log(form);
+    // console.log(this.date.value.year())
+    // console.log(this.date.value.month())
+    console.log(documentInformation);
+
   }
 
 }

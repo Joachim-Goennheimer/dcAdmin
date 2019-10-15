@@ -1,8 +1,8 @@
-<form>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="row">
                 <div class="col">
                     <mat-form-field>
-                            <input matInput [matDatepicker]="dp" placeholder="Month and Year" [formControl]="date">
+                            <input name="monthAndYear" matInput [matDatepicker]="dp" placeholder="Month and Year" [formControl]="date">
                             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp
                                             startView="multi-year"
@@ -16,7 +16,7 @@
                 <div class="col">
                     <label for="importance" class="customLabel">importance</label>
                   <!-- <label for="importance">importance</label> -->
-                    <select class="form-control importanceSelector" id="importance">
+                    <select ngModel name="importance" class="form-control importanceSelector" id="importance">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -27,15 +27,15 @@
             </div>
         <div class="row">
             <label for="institution" class="customLabel">Institution</label>
-            <input type="text" name="institution" class="form-control">
+            <input ngModel type="text" name="institution" class="form-control">
 
         </div>
         <div class="row top-buffer">
             <label for="description" class="customLabel">Description</label>
-          <textarea class="form-control" name="description" id="documentDescription" rows="3"></textarea>
+          <textarea ngModel class="form-control" name="description" id="documentDescription" rows="3"></textarea>
         </div>
         <div class="row top-buffer">
-            <button type="button" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
+            <button type="button" type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
         </div>
 
 

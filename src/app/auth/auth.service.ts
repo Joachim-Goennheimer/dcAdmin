@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable()
 export class AuthService {
@@ -7,23 +9,59 @@ export class AuthService {
     accessToken: string;
 
 
-    constructor(private router: Router){}
+    constructor(private router: Router,
+        private http: HttpClient){}
 
-    signupUser(email: string, password: string){
+    signupUser(email: string, username: string, password: string){
+        const userCredentials = {
+            "email": email,
+            "username": username,
+            "password": password
+        }
+
+        this.http.post("https://webfileviewerproject.herokuapp.com/register", userCredentials)
+        .subscribe(
+            (response) => console.log(response),
+            (error) => console.log(error)
+        )
         // logic for sending signup request
     }
 
     signinUser(email: string, password: string){
+        class loginResponse{
+            loginStatus: boolean;
+            token: string;
+        }
         // logic for sending signin request
 
         // Promise.then((token: string) => this.token)
 
-        if(email != null && password != null){
-            console.log("In authservice");
-
-            this.accessToken = "12345";
-            this.router.navigate(['/overview']);
+        const userCredentials = {
+            "email": email,
+            "username": email,
+            "password": password
         }
+
+        this.http.post("https://webfileviewerproject.herokuapp.com/login", userCredentials)
+        .subscribe(
+            (response: loginResponse) => {
+                this.accessToken = response.token;
+                console.log(response)
+            },
+            (error) => console.log(error)
+        )
+
+        this.router.navigate(['/overview']);
+
+
+        
+
+        // if(email != null && password != null){
+        //     console.log("In authservice");
+
+        //     this.accessToken = "12345";
+        //     this.router.navigate(['/overview']);
+        // }
 
     }
 
@@ -35,5 +73,9 @@ export class AuthService {
 
     isAuthenticated(){
         return this.accessToken != null;
+    }
+
+    getToken(){
+        return this.accessToken;
     }
 }

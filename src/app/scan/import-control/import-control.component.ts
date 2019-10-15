@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { DocumentsService } from 'src/app/documents.service';
 
 @Component({
   selector: 'app-import-control',
@@ -6,10 +7,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./import-control.component.sass']
 })
 export class ImportControlComponent implements OnInit {
+  @ViewChild("importProgressBar", {static: false}) importProgressbar: ElementRef;
+  // @ViewChild("currentlyImportingDocumentNumber", {static: false}) currentlyImportingDN: ElementRef;
+  // @ViewChild("totallyImportingDocumentsNumber", {static: false}) totallyImportingDN: ElementRef;
 
-  constructor() { }
+  importingDocuments: boolean = true;
+  totalDocumentsCurrentlyImporting: number = 15;
+  documentNumberCurrentlyImporting: number = 2;
+  progressWidth: number = 0;
+
+  numberImportPdfs: number;
+
+  constructor(
+    private dcService: DocumentsService,
+    private renderer: Renderer2) { 
+  }
 
   ngOnInit() {
+  }
+
+  onImportDocuments(){
+
+
+    // return this.dcService.importDocuments();
+  }
+
+  onProgressClick(){
+
+    let progressWidthString: string = "0%";
+    this.documentNumberCurrentlyImporting++;
+    this.progressWidth = this.calculateCurrentProgressWidth();
+    console.log(this.progressWidth);
+
+    progressWidthString = this.progressWidth *100 + "%";
+    console.log(progressWidthString);
+
+    this.renderer.setStyle(this.importProgressbar.nativeElement, 'width', progressWidthString);
+
+  }
+
+  calculateCurrentProgressWidth(){
+
+    return this.documentNumberCurrentlyImporting/this.totalDocumentsCurrentlyImporting;
   }
 
 }
