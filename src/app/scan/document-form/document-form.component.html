@@ -14,7 +14,7 @@
                               
                 </div>
                 <div class="col">
-                    <label for="importance" class="customLabel">importance</label>
+                    <label for="importance" class="customLabel">Importance</label>
                   <!-- <label for="importance">importance</label> -->
                     <select ngModel name="importance" class="form-control importanceSelector" id="importance">
                         <option>1</option>
@@ -26,17 +26,56 @@
                 </div>
             </div>
         <div class="row">
+          <div class="col">
             <label for="institution" class="customLabel">Institution</label>
-            <input ngModel type="text" name="institution" class="form-control">
-
+            <label id="createInstitutionButton" type="button" class="customLabel left-buffer" (click)="open(createIntitutionModal)">Create new</label>
+            <select ngModel name="institution" class="form-control institutionSelector" id="institution">
+                <option *ngFor="let institution of availableInstitutions">{{institution}}</option>
+              </select>                
+        </div>
         </div>
         <div class="row top-buffer">
-            <label for="description" class="customLabel">Description</label>
-          <textarea ngModel class="form-control" name="description" id="documentDescription" rows="3"></textarea>
+          <label for="documentTitle" class="customLabel">Document Title</label>
+          <input ngModel type="text" name="documentTitle" class="form-control">
         </div>
         <div class="row top-buffer">
-            <button type="button" type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
+          <label for="shortDescription" class="customLabel">Short description</label>
+          <input ngModel type="text" name="shortDescription" class="form-control">
+        </div>
+        <div class="row top-buffer">
+            <label for="details" class="customLabel">Details</label>
+          <textarea ngModel class="form-control" name="details" id="documentDetails" rows="3"></textarea>
+        </div>
+        <div class="row top-buffer">
+            <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
         </div>
 
 
 </form>
+
+
+<ng-template #createIntitutionModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Create new</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <ul>
+          <li *ngFor="let institution of availableInstitutions">{{institution}}</li>
+        </ul>
+        <label for="createNewInstitution">Add Institution</label>
+        <div class="input-group">
+          <input type="text" name="newInstitution" id="createNewInstitution" class="form-control" [(ngModel)]="newInstitution" >
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close(newInstitution)">add</button> -->
+    <button type="button" class="btn btn-outline-dark" (click)="addNewInstitution(newInstitution)">add</button>
+  </div>
+</ng-template>

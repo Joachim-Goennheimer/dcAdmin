@@ -2,14 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { MatTableModule, 
-         MatPaginatorModule, 
-         MatSortModule, 
-         MatInputModule, 
+import { MatTableModule,
+         MatPaginatorModule,
+         MatSortModule,
+         MatInputModule,
          MatCheckboxModule,
          MatDatepickerModule,
          MatNativeDateModule } from '@angular/material';
-import { MomentDateAdapter, MatMomentDateModule } from '@angular/material-moment-adapter'
+import { MomentDateAdapter, MatMomentDateModule } from '@angular/material-moment-adapter';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 // import { SelectionModel } from '@angular/cdk/collections';
 
 
@@ -29,6 +30,7 @@ import { DataSummaryComponent } from './overview/data-summary/data-summary.compo
 import { DashboardComponent } from './overview/dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { PdfFrameComponent } from './documents/pdf-frame/pdf-frame.component';
+import { PdfFrameScanComponent } from './scan/pdf-frame-scan/pdf-frame-scan.component';
 import { DocNavigationComponent } from './documents/doc-navigation/doc-navigation.component';
 import { DocListComponent } from './documents/doc-list/doc-list.component';
 import { DocDetailsComponent } from './documents/doc-details/doc-details.component';
@@ -39,13 +41,13 @@ import { ImportControlComponent } from './scan/import-control/import-control.com
 import { DocumentsService } from './documents.service';
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: '/login', pathMatch: 'full' },
-  { path: "overview", component: OverviewComponent },
-  { path: "documentView", component: DocumentsComponent },
-  { path: "scan", component: ScanComponent },
-  { path: "login", component: SigninComponent },
-  { path: "register", component: SignupComponent },
-  { path: "userProfile", component: UserProfileComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'overview', component: OverviewComponent },
+  { path: 'documentView', component: DocumentsComponent },
+  { path: 'scan', component: ScanComponent },
+  { path: 'login', component: SigninComponent },
+  { path: 'register', component: SignupComponent },
+  { path: 'userProfile', component: UserProfileComponent }
   // { path: "category/structure", component: AppComponent }
 ];
 
@@ -62,6 +64,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     DocumentsComponent,
     PdfFrameComponent,
+    PdfFrameScanComponent,
     DocNavigationComponent,
     DocListComponent,
     ScanComponent,
@@ -85,7 +88,8 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgbModule
   ],
   providers: [DataModelService, AuthService, DocumentsService, MomentDateAdapter],
   bootstrap: [AppComponent]

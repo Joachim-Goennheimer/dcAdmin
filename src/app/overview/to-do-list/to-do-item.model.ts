@@ -1,9 +1,9 @@
 export class TodoItem {
     id: number;
-    title: string = '';
-    complete: boolean = false;
-  
-    constructor(values: Object = {}) {
+    title = '';
+    complete = false;
+
+    constructor(values: object = {}) {
       Object.assign(this, values);
     }
   }

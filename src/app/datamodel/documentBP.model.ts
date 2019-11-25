@@ -1,5 +1,8 @@
 import { Institution } from './institution.model';
 
+/**
+ * Describes how a Document object. BP stands for BluePrint.
+ */
 export class DocumentBP {
 
     id: number;
@@ -10,7 +13,7 @@ export class DocumentBP {
     description: string;
 
 
-    constructor(id: number,year: number, month: number, institutionName: string, importance: number, description: string){
+    constructor(id: number, year: number, month: number, institutionName: string, importance: number, description: string) {
         this.id = id;
         this.year = year;
         this.month = month;

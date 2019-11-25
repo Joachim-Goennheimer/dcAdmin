@@ -7,48 +7,48 @@ import { DocumentsService } from 'src/app/documents.service';
   styleUrls: ['./import-control.component.sass']
 })
 export class ImportControlComponent implements OnInit {
-  @ViewChild("importProgressBar", {static: false}) importProgressbar: ElementRef;
+  @ViewChild('importProgressBar', {static: false}) importProgressbar: ElementRef;
   // @ViewChild("currentlyImportingDocumentNumber", {static: false}) currentlyImportingDN: ElementRef;
   // @ViewChild("totallyImportingDocumentsNumber", {static: false}) totallyImportingDN: ElementRef;
 
-  importingDocuments: boolean = true;
-  totalDocumentsCurrentlyImporting: number = 15;
-  documentNumberCurrentlyImporting: number = 2;
-  progressWidth: number = 0;
+  importingDocuments = true;
+  totalDocumentsCurrentlyImporting = 15;
+  documentNumberCurrentlyImporting = 2;
+  progressWidth = 0;
 
   numberImportPdfs: number;
 
   constructor(
     private dcService: DocumentsService,
-    private renderer: Renderer2) { 
+    private renderer: Renderer2) {
   }
 
   ngOnInit() {
   }
 
-  onImportDocuments(){
+  onImportDocuments() {
 
 
     // return this.dcService.importDocuments();
   }
 
-  onProgressClick(){
+  onProgressClick() {
 
-    let progressWidthString: string = "0%";
+    let progressWidthString = '0%';
     this.documentNumberCurrentlyImporting++;
     this.progressWidth = this.calculateCurrentProgressWidth();
     console.log(this.progressWidth);
 
-    progressWidthString = this.progressWidth *100 + "%";
+    progressWidthString = this.progressWidth * 100 + '%';
     console.log(progressWidthString);
 
     this.renderer.setStyle(this.importProgressbar.nativeElement, 'width', progressWidthString);
 
   }
 
-  calculateCurrentProgressWidth(){
+  calculateCurrentProgressWidth() {
 
-    return this.documentNumberCurrentlyImporting/this.totalDocumentsCurrentlyImporting;
+    return this.documentNumberCurrentlyImporting / this.totalDocumentsCurrentlyImporting;
   }
 
 }

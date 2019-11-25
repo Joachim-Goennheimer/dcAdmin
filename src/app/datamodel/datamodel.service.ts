@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 
@@ -7,9 +7,9 @@ export class DataModelService {
 
 
     constructor(private http: HttpClient,
-                private authService: AuthService){
+                private authService: AuthService) {
 
     }
 
-    someMethod(){}
+    someMethod() {}
 }

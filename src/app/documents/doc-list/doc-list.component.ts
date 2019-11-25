@@ -19,19 +19,19 @@ export interface DocumentBP {
 const initialSelection = [];
 const allowMultiSelect = false;
 
-const ELEMENT_DATA: DocumentBP[] = [
-  {year: 2019, month: 10, institution: "IRS", importance: 2},
-  {year: 2018, month: 11, institution: "School", importance: 3},
-  {year: 2017, month: 5, institution: "Insurance", importance: 2},
-  {year: 2018, month: 2, institution: "Doctor", importance: 2},
-  {year: 2019, month: 1, institution: "University", importance: 5},
-  {year: 2017, month: 5, institution: "Insurance", importance: 2},
-  {year: 2018, month: 2, institution: "Doctor", importance: 2},
-  {year: 2019, month: 10, institution: "IRS", importance: 2},
-  {year: 2018, month: 11, institution: "School", importance: 3},
-  {year: 2019, month: 1, institution: "University", importance: 5},
+// const ELEMENT_DATA: DocumentBP[] = [
+//   {year: 2019, month: 10, institution: "IRS", importance: 2},
+//   {year: 2018, month: 11, institution: "School", importance: 3},
+//   {year: 2017, month: 5, institution: "Insurance", importance: 2},
+//   {year: 2018, month: 2, institution: "Doctor", importance: 2},
+//   {year: 2019, month: 1, institution: "University", importance: 5},
+//   {year: 2017, month: 5, institution: "Insurance", importance: 2},
+//   {year: 2018, month: 2, institution: "Doctor", importance: 2},
+//   {year: 2019, month: 10, institution: "IRS", importance: 2},
+//   {year: 2018, month: 11, institution: "School", importance: 3},
+//   {year: 2019, month: 1, institution: "University", importance: 5},
 
-]
+// ]
 
 @Component({
   selector: 'app-doc-list',
@@ -60,6 +60,7 @@ export class DocListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     console.log("doc-list initialized");
     this.dcService.getDocumentsInformation();
+    // waiting for data from server.
     this.dcService.documentsInformationSubject
     .subscribe(
       (response: DocumentBP[]) => {
@@ -71,8 +72,9 @@ export class DocListComponent implements OnInit {
 
   toggleAndLoad(row){
     this.selection.toggle(row);
-    
-    this.dcService.getDocumentPDF(5)
+    console.log(row);
+    // requests documentPDF by handing the databaseID of the document
+    this.dcService.getDocumentPDFByID(row.id)
       
   }
 

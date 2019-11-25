@@ -4,14 +4,18 @@ import { Subject } from 'rxjs';
 import { DocumentBP } from './datamodel/documentBP.model';
 import { AuthService } from './auth/auth.service';
 
-let pdfBlob: Blob;
+// let pdfBlob: Blob;
 
-
+/**
+ * Service that manages the document data as well as all the requests for retrieving and saving documents.
+ */
 @Injectable()
 export class DocumentsService {
 
 
+    // stores information about all the documents sent by server
     documentsInformationSubject = new Subject();
+    // holds information about all documents
     documentsInformation: DocumentBP[] = [];
 
     pdfSubject = new Subject();
@@ -20,14 +24,14 @@ export class DocumentsService {
     scannedPdfSubject = new Subject();
 
 
-    constructor(private http: HttpClient,
-        private authService: AuthService){
+    constructor(private http: HttpClient, private authService: AuthService) {
 
     }
 
 
-    importDocuments(){
-        this.http.get("https://webfileviewerproject.herokuapp.com/importDocuments", {responseType: 'arraybuffer' as 'json'})
+    // starts the import of new documents.
+    importDocuments() {
+        this.http.get('https://webfileviewerproject.herokuapp.com/importDocuments', {responseType: 'arraybuffer' as 'json'} )
         .subscribe(
             (response) => {
                 this.scannedPdfSubject.next(response);
@@ -36,7 +40,8 @@ export class DocumentsService {
             );
     }
 
-    saveDocument(document: Object){
+    // sends the data that should be saved for the current document to the server
+    saveDocument(document: Object) {
         const httpOptions = {
             headers: new HttpHeaders({
             //     'host': "webfileviewerproject.herokuapp.com",
@@ -45,7 +50,7 @@ export class DocumentsService {
               'content-type': "application/json"
             })
         }
-        this.http.post("https://webfileviewerproject.herokuapp.com/currentDocumentData", document, httpOptions)
+        this.http.post('https://webfileviewerproject.herokuapp.com/currentDocumentData', document, httpOptions)
         .subscribe(
             (response) => console.log(response),
             (error) => console.log(error)
@@ -53,11 +58,7 @@ export class DocumentsService {
 
     }
 
-    getDocumentsInformation(){
-        class ReturnObjectFormat {
-            documentInfo: DocumentBP[];
-        }
-
+    getAvailableInstitutions() {
         const accessToken = this.authService.getToken();
         const httpOptions = {
             headers: new HttpHeaders({
@@ -66,10 +67,46 @@ export class DocumentsService {
               'x-access-token': accessToken
             })
         }
+        return this.http.get('https://webfileviewerproject.herokuapp.com/institutions', httpOptions);
+    }
+
+    createNewInstitution(institutionName: string) {
+        const accessToken = this.authService.getToken();
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'responseType':  'application/json',
+            //   'Authorization': 'my-auth-token',
+              'x-access-token': accessToken
+            })
+        }
+        this.http.post('https://webfileviewerproject.herokuapp.com/createInstitution', httpOptions)
+        .subscribe(
+          (response) => console.log(response),
+          (error) => console.log(error)
+        );
+    }
+
+    // function that
+    getDocumentsInformation() {
+        class ReturnObjectFormat {
+            documentInfo: DocumentBP[];
+        }
+
+        // getting auth information required for the request
+        const accessToken = this.authService.getToken();
+        const httpOptions = {
+            headers: new HttpHeaders({
+              'responseType':  'application/json',
+            //   'Authorization': 'my-auth-token',
+              'x-access-token': accessToken
+            })
+        }
+        // remove all elements of array before loading documentInfo. Otherwise would be duplicated.
+        this.documentsInformation = [];
 
         console.log("in getDocumentsInformation function");
         // this.http.get<ReturnObjectFormat>("https://webfileviewerproject.herokuapp.com/documents", {responseType: 'json'})
-        this.http.get<ReturnObjectFormat>("https://webfileviewerproject.herokuapp.com/documents", httpOptions)
+        this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/documents', httpOptions)
         .subscribe(
             (response) => {
                 console.log(response);
@@ -86,22 +123,49 @@ export class DocumentsService {
 
     }
 
-    getDocumentPDF(documentID: number){
+    // not used anymore. Was used before ID functionality was implemented in backend.
+    getDocumentPDF(documentID: number) {
 
-        this.http.get("https://webfileviewerproject.herokuapp.com/document", {responseType: 'arraybuffer' as 'json'})
+        const accessToken = this.authService.getToken();
+        const headers = new HttpHeaders({
+              'x-access-token': accessToken,
+        })
+           
+        this.http.get('https://webfileviewerproject.herokuapp.com/document', {headers: headers, responseType: 'arraybuffer' as 'json'})
         .subscribe(
             (response) => {
                 this.pdfSubject.next(response);
+                console.log(response);
               },
               (error) => console.log(error)
             );
     }
 
-    getPdfBlob(){
-        return pdfBlob;
+    // requesting a document as pdf given its documentID
+    getDocumentPDFByID(documentID: number) {
+
+        const accessToken = this.authService.getToken();
+        const headers = new HttpHeaders({
+              'x-access-token': accessToken,
+        })
+
+        const requestString = 'https://webfileviewerproject.herokuapp.com/documentPDF/' + documentID;
+
+        this.http.get(requestString, {headers: headers, responseType: 'arraybuffer' as 'json'})
+        .subscribe(
+            (response) => {
+                this.pdfSubject.next(response);
+                console.log(response);
+              },
+              (error) => console.log(error)
+            );
     }
 
-    addToDocumentInformationArray(document: DocumentBP){
+    // getPdfBlob(){
+    //     return pdfBlob;
+    // }
+
+    addToDocumentInformationArray(document: DocumentBP) {
         let addingDocument = new DocumentBP(
             document.id, 
             document.year, 

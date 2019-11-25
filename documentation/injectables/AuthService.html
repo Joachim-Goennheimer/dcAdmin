@@ -90,6 +90,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#getToken">getToken</a>
+                            </li>
+                            <li>
                                 <a href="#isAuthenticated">isAuthenticated</a>
                             </li>
                             <li>
@@ -119,12 +122,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/auth/auth.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/auth/auth.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -153,6 +156,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -167,6 +182,45 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getToken"></a>
+                    <span class="name">
+                        <b>
+                            getToken
+                        </b>
+                        <a href="#getToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getToken()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/auth/auth.service.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -189,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/app/auth/auth.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/auth/auth.service.ts:74</a></div>
                 </td>
             </tr>
 
@@ -228,8 +282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/auth/auth.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/app/auth/auth.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -267,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/auth/auth.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/auth/auth.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -342,15 +396,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>signupUser(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>signupUser(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/auth/auth.service.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/app/auth/auth.service.ts:15</a></div>
                 </td>
             </tr>
 
@@ -371,6 +425,18 @@
                             <tbody>
                                 <tr>
                                     <td>email</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>username</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -435,7 +501,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/auth/auth.service.ts:7</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/auth/auth.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -450,6 +516,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
+
 
 @Injectable()
 export class AuthService {
@@ -457,23 +525,59 @@ export class AuthService {
     accessToken: string;
 
 
-    constructor(private router: Router){}
+    constructor(private router: Router,
+        private http: HttpClient){}
 
-    signupUser(email: string, password: string){
+    signupUser(email: string, username: string, password: string){
+        const userCredentials &#x3D; {
+            &quot;email&quot;: email,
+            &quot;username&quot;: username,
+            &quot;password&quot;: password
+        }
+
+        this.http.post(&quot;https://webfileviewerproject.herokuapp.com/register&quot;, userCredentials)
+        .subscribe(
+            (response) &#x3D;&gt; console.log(response),
+            (error) &#x3D;&gt; console.log(error)
+        )
         // logic for sending signup request
     }
 
     signinUser(email: string, password: string){
+        class loginResponse{
+            loginStatus: boolean;
+            token: string;
+        }
         // logic for sending signin request
 
         // Promise.then((token: string) &#x3D;&gt; this.token)
 
-        if(email !&#x3D; null &amp;&amp; password !&#x3D; null){
-            console.log(&quot;In authservice&quot;);
-
-            this.accessToken &#x3D; &quot;12345&quot;;
-            this.router.navigate([&#x27;/overview&#x27;]);
+        const userCredentials &#x3D; {
+            &quot;email&quot;: email,
+            &quot;username&quot;: email,
+            &quot;password&quot;: password
         }
+
+        this.http.post(&quot;https://webfileviewerproject.herokuapp.com/login&quot;, userCredentials)
+        .subscribe(
+            (response: loginResponse) &#x3D;&gt; {
+                this.accessToken &#x3D; response.token;
+                console.log(response)
+            },
+            (error) &#x3D;&gt; console.log(error)
+        )
+
+        this.router.navigate([&#x27;/overview&#x27;]);
+
+
+        
+
+        // if(email !&#x3D; null &amp;&amp; password !&#x3D; null){
+        //     console.log(&quot;In authservice&quot;);
+
+        //     this.accessToken &#x3D; &quot;12345&quot;;
+        //     this.router.navigate([&#x27;/overview&#x27;]);
+        // }
 
     }
 
@@ -485,6 +589,10 @@ export class AuthService {
 
     isAuthenticated(){
         return this.accessToken !&#x3D; null;
+    }
+
+    getToken(){
+        return this.accessToken;
     }
 }</code></pre>
     </div>
