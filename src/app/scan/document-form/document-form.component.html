@@ -16,12 +16,12 @@
                 <div class="col">
                     <label for="importance" class="customLabel">Importance</label>
                   <!-- <label for="importance">importance</label> -->
-                    <select ngModel name="importance" class="form-control importanceSelector" id="importance">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select required ngModel name="importance" class="form-control importanceSelector" id="importance">
+                        <option [value]="1">1</option>
+                        <option [value]="2">2</option>
+                        <option [value]="3">3</option>
+                        <option [value]="4">4</option>
+                        <option [value]="5">5</option>
                       </select>                
                 </div>
             </div>
@@ -29,25 +29,25 @@
           <div class="col">
             <label for="institution" class="customLabel">Institution</label>
             <label id="createInstitutionButton" type="button" class="customLabel left-buffer" (click)="open(createIntitutionModal)">Create new</label>
-            <select ngModel name="institution" class="form-control institutionSelector" id="institution">
-                <option *ngFor="let institution of availableInstitutions">{{institution}}</option>
+            <select required ngModel name="institution" class="form-control institutionSelector" id="institution">
+                <option *ngFor="let institution of availableInstitutions" [value]="institution">{{institution}}</option>
               </select>                
         </div>
         </div>
         <div class="row top-buffer">
           <label for="documentTitle" class="customLabel">Document Title</label>
-          <input ngModel type="text" name="documentTitle" class="form-control">
+          <input required minlength="2" ngModel type="text" name="documentTitle" class="form-control">
         </div>
-        <div class="row top-buffer">
+        <!-- <div class="row top-buffer">
           <label for="shortDescription" class="customLabel">Short description</label>
-          <input ngModel type="text" name="shortDescription" class="form-control">
-        </div>
+          <input required minlenth="2" ngModel type="text" name="shortDescription" class="form-control">
+        </div> -->
         <div class="row top-buffer">
             <label for="details" class="customLabel">Details</label>
           <textarea ngModel class="form-control" name="details" id="documentDetails" rows="3"></textarea>
         </div>
         <div class="row top-buffer">
-            <button type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
+            <button [disabled]="f.form.invalid" type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
         </div>
 
 

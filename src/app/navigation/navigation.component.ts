@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { faFile, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -10,13 +10,14 @@ import { AuthService } from '../auth/auth.service';
 export class NavigationComponent implements OnInit {
 
   faFile = faFile;
+  faUser = faUser;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  onLogout(){
+  onLogout() {
     this.authService.logoutUser();
   }
 

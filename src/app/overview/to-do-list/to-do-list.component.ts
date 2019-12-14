@@ -15,12 +15,12 @@ export class ToDoListComponent implements OnInit {
   faTrash = faTrash;
 
   toDoItems: TodoItem[];
-  newTodoItem: TodoItem = new TodoItem;
+  newTodoItem: TodoItem = new TodoItem();
 
   constructor(private todoListService: TodoListService) { }
 
   ngOnInit() {
-    // this.toDoItems = this.todoListService.getToDoItems();
+    this.todoListService.loadAllTodos();
   }
 
   addTodo() {
@@ -33,11 +33,13 @@ export class ToDoListComponent implements OnInit {
   }
 
   removeTodo(todo) {
-    this.todoListService.deleteTodoById(todo.id);
+    console.log(todo);
+    this.todoListService.deleteTodoById(todo._id);
   }
 
   get todos() {
     return this.todoListService.getAllTodos();
+    // return this.toDoItems;
   }
 
 }

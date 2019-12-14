@@ -10,22 +10,20 @@ import { DocumentsService } from '../../documents.service';
 export class PdfFrameComponent implements OnInit {
 
   // pdfSrc: string = './assets/ProblemSheet03(1).pdf';
-  pdfSrc: Object;
-  page: number = 1;
+  pdfSrc: object;
+  page = 1;
   totalPages: number;
-  isLoaded: boolean = false;
+  isLoaded = false;
 
   constructor(private dcService: DocumentsService) { }
 
   ngOnInit() {
     this.dcService.pdfSubject.subscribe(
       (pdfData: Blob) => {
-        this.pdfSrc = pdfData
+        this.pdfSrc = pdfData;
       }
-    )
-
+    );
   }
-
 
   afterLoadComplete(pdfData: any) {
     this.totalPages = pdfData.numPages;
@@ -39,7 +37,4 @@ export class PdfFrameComponent implements OnInit {
   prevPage() {
     this.page--;
   }
-
- 
-
 }

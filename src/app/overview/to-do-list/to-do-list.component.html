@@ -12,7 +12,7 @@
             
           <ul class="todo-list list-group">
 
-            <li *ngFor="let todo of todos list-group-item" class="list-group-item py-1" [class.completed]="todo.complete">
+            <li *ngFor="let todo of todos list-group-item" class="list-group-item py-1" [class.completed]="todo.marked">
               <div class="view" (click)="toggleTodoComplete(todo)">
                 <!-- <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete"> -->
                 <fa-icon [icon]="faTrash" class="destroy right-buffer" (click)="removeTodo(todo)"></fa-icon>
@@ -26,4 +26,5 @@
           <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
         </footer>
 </section>
+
       

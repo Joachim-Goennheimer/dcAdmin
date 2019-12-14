@@ -24,10 +24,15 @@ export class SignupComponent implements OnInit {
     const username = form.value.userName;
     const password = form.value.password;
     const confirmPassword = form.value.confirmPassword;
+    const firstName = form.value.firstName;
+    const lastName = form.value.lastName;
 
-    if(password === confirmPassword) {
+    console.log(firstName);
+    console.log(lastName);
 
-      this.authservice.signupUser(email, username, password);
+    if (password === confirmPassword) {
+
+      this.authservice.signupUser(email, username, password, firstName, lastName);
       this.signUpMessage = 'Sign Up successful';
 
     } else {

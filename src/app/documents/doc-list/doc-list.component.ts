@@ -4,17 +4,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DocumentsService } from '../../documents.service';
+import { DocumentBP } from '../../datamodel/documentBP.model';
 import { saveAs } from 'file-saver';
 
 
 
-export interface DocumentBP {
-  year: number;
-  month: number;
-  institution: string;
-  importance: number;
+// export interface DocumentBP {
+//   year: number;
+//   month: number;
+//   institution: string;
+//   importance: number;
 
-}
+// }
 
 const initialSelection = [];
 const allowMultiSelect = false;
@@ -39,16 +40,16 @@ const allowMultiSelect = false;
   styleUrls: ['./doc-list.component.sass']
 })
 export class DocListComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'year', 'month', 'institution', 'importance'];
+
+  displayedColumns: string[] = ['year', 'month', 'institution', 'title', 'importance'];
 
   dataSource = new MatTableDataSource<DocumentBP>();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private dcService: DocumentsService){
-
+  constructor(private dcService: DocumentsService) {
   }
-  
+
   selection = new SelectionModel<DocumentBP>(allowMultiSelect, initialSelection);
 
   applyFilter(filterValue: string) {
@@ -56,26 +57,24 @@ export class DocListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    console.log("doc-list initialized");
     this.dcService.getDocumentsInformation();
     // waiting for data from server.
     this.dcService.documentsInformationSubject
     .subscribe(
       (response: DocumentBP[]) => {
         this.dataSource = new MatTableDataSource<DocumentBP>(response);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (error) => console.log(error)
-    )
+    );
   }
 
-  toggleAndLoad(row){
+  toggleAndLoad(row) {
     this.selection.toggle(row);
     console.log(row);
     // requests documentPDF by handing the databaseID of the document
-    this.dcService.getDocumentPDFByID(row.id)
-      
+    this.dcService.getDocumentPDFByID(row.id);
   }
 
 

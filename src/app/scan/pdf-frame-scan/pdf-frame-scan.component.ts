@@ -23,6 +23,7 @@ export class PdfFrameScanComponent implements OnInit {
   ngOnInit() {
     this.dcService.scannedPdfSubject.subscribe(
       (pdfData: Blob) => {
+        console.log('got pdf Data: ' + pdfData);
         this.pdfSrc = pdfData;
       }
     );

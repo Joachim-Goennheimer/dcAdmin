@@ -10,12 +10,24 @@ import { DataSummaryModel } from './data-summary.model';
 })
 export class DataSummaryComponent implements OnInit {
 
-  dataSummary: DataSummaryModel;
+  dataSummary: DataSummaryModel = new DataSummaryModel();
 
   constructor(private dataSummaryService: DataSummaryService) { }
 
   ngOnInit() {
-    this.dataSummary = this.dataSummaryService.getDataSummary();
+    this.dataSummaryService.getDataSummary()
+      .subscribe(
+        (response) => {
+            this.dataSummary.username = response.username;
+            this.dataSummary.firstName = response.firstName;
+            this.dataSummary.lastName = response.lastName;
+            this.dataSummary.lastLoggedIn = response.lastLoggedIn;
+            this.dataSummary.email = response.email;
+            this.dataSummary.totalDocumentCount = response.documentCount;
+            this.dataSummary.totalToDosCount = response.todoCount;
+        },
+        (error) => console.log(error)
+        );
 
   }
 

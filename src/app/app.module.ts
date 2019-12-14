@@ -10,7 +10,7 @@ import { MatTableModule,
          MatDatepickerModule,
          MatNativeDateModule } from '@angular/material';
 import { MomentDateAdapter, MatMomentDateModule } from '@angular/material-moment-adapter';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { SelectionModel } from '@angular/cdk/collections';
 
 
@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './auth/signin/signin.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { AuthService } from './auth/auth.service';
+import { UserProfileService } from './auth/user-profile/user-profile.service';
 import { DataModelService } from './datamodel/datamodel.service';
 import { OverviewComponent } from './overview/overview.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -91,7 +92,7 @@ const appRoutes: Routes = [
     MatMomentDateModule,
     NgbModule
   ],
-  providers: [DataModelService, AuthService, DocumentsService, MomentDateAdapter],
+  providers: [DataModelService, AuthService, UserProfileService, DocumentsService, MomentDateAdapter],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

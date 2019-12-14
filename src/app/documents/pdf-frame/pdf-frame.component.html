@@ -8,9 +8,9 @@
 </pdf-viewer> -->
 
 <div *ngIf="isLoaded" style="text-align: center;">
-        <button class="btn btn-outline-dark" (click)="prevPage()" [disabled]="page === 1">Prev</button>
+        <button class="btn btn-outline-dark right-buffer" (click)="prevPage()" [disabled]="page === 1">Prev</button>
         <span>{{ page }} / {{ totalPages }}</span>
-        <button class="btn btn-outline-dark" (click)="nextPage()" [disabled]="page === totalPages">Next</button>
+        <button class="btn btn-outline-dark left-buffer" (click)="nextPage()" [disabled]="page === totalPages">Next</button>
 </div>
       
       <pdf-viewer [src]="pdfSrc"

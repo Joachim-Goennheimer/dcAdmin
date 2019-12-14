@@ -1,10 +1,9 @@
 export class TodoItem {
-    id: number;
+    _id: number;
     title = '';
-    complete = false;
+    marked = false;
 
     constructor(values: object = {}) {
       Object.assign(this, values);
     }
-  }
-  
+}

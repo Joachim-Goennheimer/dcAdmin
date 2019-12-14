@@ -3,21 +3,60 @@
 <hr>
 <div class="container">
         <div class="row justify-content-center">
-            <div class="col-xs-12 col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-2">
-                    <img src="http://thetransformedmale.files.wordpress.com/2011/06/bruce-wayne-armani.jpg"
-                    alt="" class="img-rounded img-responsive" />
+            <div class="col-xs-12 col-sm-10 col-md-5 col-sm-offset-1 col-md-offset-2">
+                    <img [src]="currentUserPictureURL"
+                    alt="" class="img-rounded img-responsive profilePicture" />
+                    <div class="top-buffer">
+                        <input
+                            style="display: none"
+                            type="file" (change)="onProfilePictureChanged($event)"
+                            #fileInput>
+                        <br>
+                        <button class="btn btn-outline-dark btn-sm" type="menu" (click)="fileInput.click()">Change Profile Picture</button>
+                        <button class="btn btn-outline-dark btn-sm left-buffer" type="menu" (click)="onEditProfilePicture()" [hidden]="!showSaveNewPictureButton">Save</button>
+                    </div>
             </div>
 
             <div class="col-xs-12 col-sm-10 col-md-6 col-sm-offset-1 col-md-offset-2">
                   
-                <h2><fa-icon [icon]="faUser"></fa-icon>Joachim Gönnheimer</h2>
+                <h2 *ngIf="!showEditFirstAndLastName"><fa-icon></fa-icon>{{userProfile.firstName}} {{userProfile.lastName}}
+                    <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onEditFirstAndLastName()">Edit</button>
+                </h2>
+                
+                <div *ngIf="showEditFirstAndLastName">
+                    <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control width50" [(ngModel)]="newFirstName" required minlength="1">
+                    </div>
+                    <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control width50" [(ngModel)]="newLastName" required minlength="1">
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onSaveFirstAndLastName()">Save</button>
+                </div>
                 <br>
-                <p><fa-icon [icon]="faEnvelope"></fa-icon>joachim.goennheimer@gmx.de</p>
+
+                <p><fa-icon [icon]="faUser"></fa-icon>{{userProfile.username}}
+                    <!-- <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onEditUsername()">Edit</button> -->
+                </p>
+
+                <!-- <p *ngIf="showEditUsername"><fa-icon [icon]="faUser"></fa-icon>
+                    <input type="text" id="username" name="username" class="form-control width50" [(ngModel)]="newUsername" (keyup.enter)="onSaveUsername()" required minlength="1">
+                    <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onSaveUsername()">Save</button>
+                </p> -->
+
+                <p *ngIf="!showEditEmail"><fa-icon [icon]="faEnvelope"></fa-icon>{{userProfile.email}}
+                    <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onEditEmail()">Edit</button>
+                </p>
+
+                <p *ngIf="showEditEmail"><fa-icon [icon]="faEnvelope"></fa-icon>
+                    <input type="text" id="email" name="email" class="form-control width50" [(ngModel)]="newEmail" (keyup.enter)="onSaveEmail()" required minlength="1">
+                    <button class="btn btn-outline-dark btn-sm" type="menu" (click)="onSaveEmail()">Save</button>
+                </p>
+
                 <p><fa-icon [icon]="faBirthdayCake"></fa-icon>22.01.1994</p>
                 <p>User since 10.2019</p>
             </div>
         </div>
 </div>
-
-    
     

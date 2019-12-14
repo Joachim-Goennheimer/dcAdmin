@@ -43,7 +43,7 @@ export class DocumentFormComponent implements OnInit {
   /**
    * holds institutions that are currently in the database.
    */
-  availableInstitutions = ["Institution1", "Institution2", "Institution3", "Institution4", "Institution5"];
+  availableInstitutions = [];
 
   date = new FormControl(moment());
 
@@ -76,8 +76,8 @@ export class DocumentFormComponent implements OnInit {
   }
 
   onAddNewInstitution(institution: string) {
-    console.log("Adding institution: " + institution);
-    // this.dcService.createNewInstitution(form.createdInstitution);
+    console.log('Adding institution: ' + institution);
+    this.dcService.createNewInstitution(institution);
   }
 
   /**
@@ -86,10 +86,9 @@ export class DocumentFormComponent implements OnInit {
    */
   addNewInstitution(institution: string) {
     console.log(institution);
-    if(this.availableInstitutions.includes(institution)){
-      console.log("Already in list");
-    }
-    else {
+    if (this.availableInstitutions.includes(institution)) {
+      console.log('Already in list');
+    } else {
       this.availableInstitutions.push(institution);
       this.dcService.createNewInstitution(institution);
     }
@@ -97,19 +96,13 @@ export class DocumentFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // const documentInformation = {
-    //   year: this.date.value.year(),
-    //   month: this.date.value.month(),
-    //   institution: form.form.value.institution,
-    //   importance: form.form.value.importance,
-    //   description: form.form.value.description
-    // }
     const documentInformation = {
-      'year': '2019',
-      'month': '05',
-      'institution': 'TestInstitution',
-      'importance': '2',
-      'description': 'example15'
+      year: this.date.value.year(),
+      month: this.date.value.month(),
+      institution: form.form.value.institution,
+      title: form.form.value.documentTitle,
+      importance: form.form.value.importance,
+      description: form.form.value.details
     };
 
     this.dcService.saveDocument(documentInformation);

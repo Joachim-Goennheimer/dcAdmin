@@ -13,6 +13,7 @@ import { AuthService } from './auth/auth.service';
 export class DocumentsService {
 
 
+    returnHeaders = {};
     // stores information about all the documents sent by server
     documentsInformationSubject = new Subject();
     // holds information about all documents
@@ -22,6 +23,9 @@ export class DocumentsService {
 
     numberImportPdfs: number;
     scannedPdfSubject = new Subject();
+    scannTotalCountSubject = new Subject();
+    scannCurrentCount = 0;
+    scannCurrentCountSubject = new Subject();
 
 
     constructor(private http: HttpClient, private authService: AuthService) {
@@ -31,30 +35,58 @@ export class DocumentsService {
 
     // starts the import of new documents.
     importDocuments() {
-        this.http.get('https://webfileviewerproject.herokuapp.com/importDocuments', {responseType: 'arraybuffer' as 'json'} )
-        .subscribe(
-            (response) => {
-                this.scannedPdfSubject.next(response);
-              },
-              (error) => console.log(error)
-            );
+      const accessToken = this.authService.getToken();
+      const headers = new HttpHeaders({
+              'x-access-token': accessToken,
+      });
+      console.log("Import started");
+      this.http.get('https://webfileviewerproject.herokuapp.com/importDocuments',
+                    {headers, responseType: 'arraybuffer' as 'json', observe: 'response' })
+      .subscribe(
+          (response) => {
+              console.log(response);
+              console.log(response.headers.get('filecount'));
+              const keys = response.headers.keys();
+              this.returnHeaders = keys.map(key =>
+              `${key}: ${response.headers.get(key)}`);
+
+              this.scannedPdfSubject.next(response.body);
+              this.scannTotalCountSubject.next(response.headers.get('filecount'));
+              this.scannCurrentCount = 1;
+              this.scannCurrentCountSubject.next(this.scannCurrentCount);
+            },
+            (error) => console.log(error)
+      );
     }
 
-    // sends the data that should be saved for the current document to the server
-    saveDocument(document: Object) {
-        const httpOptions = {
-            headers: new HttpHeaders({
-            //     'host': "webfileviewerproject.herokuapp.com",
-              'Access-Control-Allow-Origin': '*',
-            //   'Accept': '*/*',
-              'content-type': "application/json"
-            })
-        }
-        this.http.post('https://webfileviewerproject.herokuapp.com/currentDocumentData', document, httpOptions)
+    /**
+     * sends the data that should be saved for the current document to the server
+     * In current implementation it will not detect if new documents are scanned when die import
+     * process has already started. If the import started with 8 documents it will stop afterwards.
+     * In order to scan newly scanned documents the import process has to be started again.
+     * This design decision can be modified later.
+     */
+    saveDocument(document: object) {
+        const accessToken = this.authService.getToken();
+        const headers = new HttpHeaders({
+          //     'host': "webfileviewerproject.herokuapp.com",
+            'Access-Control-Allow-Origin': '*',
+          //   'Accept': '*/*',
+            'content-type': 'application/json',
+            'x-access-token': accessToken
+          });
+
+        this.http.post('https://webfileviewerproject.herokuapp.com/currentDocumentData', document,
+                      {headers, responseType: 'arraybuffer' as 'json', observe: 'response'})
         .subscribe(
-            (response) => console.log(response),
+            (response) => {
+              this.scannedPdfSubject.next(response.body);
+              this.scannTotalCountSubject.next(response.headers.get('filecount'));
+              this.scannCurrentCount++;
+              this.scannCurrentCountSubject.next(this.scannCurrentCount);
+            },
             (error) => console.log(error)
-        )
+        );
 
     }
 
@@ -62,24 +94,25 @@ export class DocumentsService {
         const accessToken = this.authService.getToken();
         const httpOptions = {
             headers: new HttpHeaders({
-              'responseType':  'application/json',
+              responseType:  'application/json',
             //   'Authorization': 'my-auth-token',
               'x-access-token': accessToken
             })
-        }
+        };
         return this.http.get('https://webfileviewerproject.herokuapp.com/institutions', httpOptions);
     }
 
     createNewInstitution(institutionName: string) {
+
         const accessToken = this.authService.getToken();
         const httpOptions = {
             headers: new HttpHeaders({
-              'responseType':  'application/json',
+              responseType:  'application/json',
             //   'Authorization': 'my-auth-token',
               'x-access-token': accessToken
             })
-        }
-        this.http.post('https://webfileviewerproject.herokuapp.com/createInstitution', httpOptions)
+        };
+        this.http.post('https://webfileviewerproject.herokuapp.com/createInstitution', {institution: institutionName}, httpOptions)
         .subscribe(
           (response) => console.log(response),
           (error) => console.log(error)
@@ -96,26 +129,20 @@ export class DocumentsService {
         const accessToken = this.authService.getToken();
         const httpOptions = {
             headers: new HttpHeaders({
-              'responseType':  'application/json',
+              responseType:  'application/json',
             //   'Authorization': 'my-auth-token',
               'x-access-token': accessToken
             })
-        }
+        };
         // remove all elements of array before loading documentInfo. Otherwise would be duplicated.
         this.documentsInformation = [];
 
-        console.log("in getDocumentsInformation function");
-        // this.http.get<ReturnObjectFormat>("https://webfileviewerproject.herokuapp.com/documents", {responseType: 'json'})
         this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/documents', httpOptions)
         .subscribe(
             (response) => {
-                console.log(response);
-                console.log(typeof(response));
-                // documentsInformationObject = JSON.parse(response);
-                console.log(response.documentInfo);
                 response.documentInfo.forEach((document: DocumentBP) => {
                     this.addToDocumentInformationArray(document);
-                })
+                });
                 this.documentsInformationSubject.next(this.documentsInformation);
             },
             (error) => console.log(error)
@@ -129,9 +156,9 @@ export class DocumentsService {
         const accessToken = this.authService.getToken();
         const headers = new HttpHeaders({
               'x-access-token': accessToken,
-        })
-           
-        this.http.get('https://webfileviewerproject.herokuapp.com/document', {headers: headers, responseType: 'arraybuffer' as 'json'})
+        });
+
+        this.http.get('https://webfileviewerproject.herokuapp.com/document', {headers, responseType: 'arraybuffer' as 'json'})
         .subscribe(
             (response) => {
                 this.pdfSubject.next(response);
@@ -147,11 +174,11 @@ export class DocumentsService {
         const accessToken = this.authService.getToken();
         const headers = new HttpHeaders({
               'x-access-token': accessToken,
-        })
+        });
 
         const requestString = 'https://webfileviewerproject.herokuapp.com/documentPDF/' + documentID;
 
-        this.http.get(requestString, {headers: headers, responseType: 'arraybuffer' as 'json'})
+        this.http.get(requestString, {headers, responseType: 'arraybuffer' as 'json'})
         .subscribe(
             (response) => {
                 this.pdfSubject.next(response);
@@ -161,22 +188,15 @@ export class DocumentsService {
             );
     }
 
-    // getPdfBlob(){
-    //     return pdfBlob;
-    // }
-
     addToDocumentInformationArray(document: DocumentBP) {
-        let addingDocument = new DocumentBP(
-            document.id, 
-            document.year, 
-            document.month, 
-            document.institution,
-            document.importance,
-            document.description);
-        this.documentsInformation.push(addingDocument);
+      const addingDocument = new DocumentBP(
+        document.id,
+        document.year,
+        document.month,
+        document.institution,
+        document.title,
+        document.importance,
+        document.description);
+      this.documentsInformation.push(addingDocument);
     }
-
-
-
-
 }
