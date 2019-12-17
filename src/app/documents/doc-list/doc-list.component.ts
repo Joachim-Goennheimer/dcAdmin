@@ -7,32 +7,8 @@ import { DocumentsService } from '../../documents.service';
 import { DocumentBP } from '../../datamodel/documentBP.model';
 import { saveAs } from 'file-saver';
 
-
-
-// export interface DocumentBP {
-//   year: number;
-//   month: number;
-//   institution: string;
-//   importance: number;
-
-// }
-
 const initialSelection = [];
 const allowMultiSelect = false;
-
-// const ELEMENT_DATA: DocumentBP[] = [
-//   {year: 2019, month: 10, institution: "IRS", importance: 2},
-//   {year: 2018, month: 11, institution: "School", importance: 3},
-//   {year: 2017, month: 5, institution: "Insurance", importance: 2},
-//   {year: 2018, month: 2, institution: "Doctor", importance: 2},
-//   {year: 2019, month: 1, institution: "University", importance: 5},
-//   {year: 2017, month: 5, institution: "Insurance", importance: 2},
-//   {year: 2018, month: 2, institution: "Doctor", importance: 2},
-//   {year: 2019, month: 10, institution: "IRS", importance: 2},
-//   {year: 2018, month: 11, institution: "School", importance: 3},
-//   {year: 2019, month: 1, institution: "University", importance: 5},
-
-// ]
 
 @Component({
   selector: 'app-doc-list',

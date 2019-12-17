@@ -1,20 +1,3 @@
-// import { TodoItem } from './to-do-item.model';
-
-// export class ToDoListService {
-
-//     private toDoItems: TodoItem[] =
-//     [new TodoItem(1, "take care of Rebecca", "My cute little daughter", 10),
-//      new TodoItem(2, "Study for CCNA", "Very interesting topics", 5),
-//      new TodoItem(3, "WebEngineering Project", "Very interesting topics", 5),
-//      new TodoItem(4, "Cooking", "Very interesting topics", 5),
-//      new TodoItem(5, "Sleeping", "Very interesting topics", 5)];
-
-
-//      getToDoItems(){
-//          return this.toDoItems.slice();
-//      }
-// }
-
 import { Injectable } from '@angular/core';
 import { TodoItem } from './to-do-item.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -32,6 +15,14 @@ export class TodoListService {
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
+
+  getTodos() {
+    const todos = [{
+      id: 10,
+      title: "title2"
+  }];
+  return todos;
+}
 
   // Simulate POST /todos
   addTodo(todo: TodoItem): TodoListService {
