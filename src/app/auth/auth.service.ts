@@ -37,24 +37,21 @@ export class AuthService {
         );
     }
 
+    /**
+     * login request. If login successful access token is returned.
+     * The token is sent with later requests in order to authenticate the user.
+     */
     signinUser(email: string, password: string) {
         class LoginResponse {
             loginStatus: boolean;
             token: string;
         }
-        // logic for sending signin request
-
-        // Promise.then((token: string) => this.token)
 
         const userCredentials = {
             userIdentifier: email,
             password
         };
 
-        /**
-         * login request. If login successful access token is returned.
-         * The token is sent with later requests in order to authenticate the user.
-         */
         this.http.post('https://webfileviewerproject.herokuapp.com/login', userCredentials)
         .subscribe(
             (response: LoginResponse) => {
@@ -70,8 +67,6 @@ export class AuthService {
     }
 
     logoutUser() {
-        // send request to destroy token
-        // stop displaying the document data
         this.accessToken = null;
     }
 

@@ -101,7 +101,7 @@ describe('ToDoListComponent', () => {
         // let todoInputElement: DebugElement = fixture.debugElement.query(By.css('.new-todo'));
         // todoInputElement.nativeElement.value = "inputTodo";
 
-        const spy = spyOn(todoListStub, 'loadAllTodos');
+        spyOn(todoListStub, 'loadAllTodos');
         tick();
         fixture.detectChanges();
         comp.removeTodo(12);

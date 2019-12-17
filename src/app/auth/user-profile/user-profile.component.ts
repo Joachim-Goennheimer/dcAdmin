@@ -89,6 +89,9 @@ export class UserProfileComponent implements OnInit {
     this.showSaveNewPictureButton = true;
   }
 
+  /**
+   * function that sends request to server to update user picture there.
+   */
   onEditProfilePicture(){
     this.upService.editUserProfilePicture(this.newUserPictureFile);
     this.showSaveNewPictureButton = false;

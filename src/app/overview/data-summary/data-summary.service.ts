@@ -3,6 +3,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+/**
+ * Service that retrieves summary data from server.
+ */
 @Injectable()
 export class DataSummaryService {
 

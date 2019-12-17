@@ -64,6 +64,13 @@
     <code>src/app/auth/signin/signin.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Manages the user login form.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -121,6 +128,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#wrongUserCredentials">wrongUserCredentials</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -159,7 +180,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/auth/signin/signin.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/auth/signin/signin.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -228,8 +249,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/auth/signin/signin.component.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/auth/signin/signin.component.ts:20</a></div>
                 </td>
             </tr>
 
@@ -267,14 +288,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/auth/signin/signin.component.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/auth/signin/signin.component.ts:31</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Method invoked when user presses login. Calls authservice to check if valid usercredentials.
+If not sets wrongUserCredentials to true and displays message to user.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -284,6 +308,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -298,6 +323,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>holds login data from html form</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -316,6 +345,38 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="wrongUserCredentials"></a>
+                        <span class="name">
+                            <b>
+                            wrongUserCredentials</b>
+                            <a href="#wrongUserCredentials"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/auth/signin/signin.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
 </div>
 
@@ -325,24 +386,45 @@
 import { AuthService } from &#x27;../auth.service&#x27;;
 import { NgForm } from &#x27;@angular/forms&#x27;;
 
+/**
+ * Manages the user login form.
+ */
 @Component({
   selector: &#x27;app-signin&#x27;,
   templateUrl: &#x27;./signin.component.html&#x27;,
   styleUrls: [&#x27;./signin.component.sass&#x27;]
 })
+/**
+ * Component that manages the login form. Communicates closely with the authentication service
+ */
 export class SigninComponent implements OnInit {
 
   constructor(private authservice: AuthService) { }
 
   ngOnInit() {
+
   }
 
-  onSignin(form: NgForm){
+  wrongUserCredentials &#x3D; false;
+
+  /**
+   * Method invoked when user presses login. Calls authservice to check if valid usercredentials.
+   * If not sets wrongUserCredentials to true and displays message to user.
+   * @param form holds login data from html form
+   */
+  onSignin(form: NgForm) {
     const email &#x3D; form.value.email;
     const password &#x3D; form.value.password;
 
     this.authservice.signinUser(email, password);
-    console.log(&quot;signing in&quot;);
+    this.authservice.signInSuccessSubject
+    .subscribe(
+      (signInSuccessMessage: boolean) &#x3D;&gt; {
+        this.wrongUserCredentials &#x3D; !signInSuccessMessage;
+      }
+
+    )
+    console.log(&#x27;signing in&#x27;);
 
   }
 
@@ -369,6 +451,8 @@ export class SigninComponent implements OnInit {
                                 &lt;input type&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; ngModel&gt;
                         &lt;/div&gt;
                         &lt;button class&#x3D;&quot;btn btn-primary&quot; type&#x3D;&quot;submit&quot;&gt;Sign in&lt;/button&gt;
+                        &lt;span class&#x3D;&quot;help-block left-buffer&quot; *ngIf&#x3D;&quot;wrongUserCredentials&quot;&gt;Wrong username or password&lt;/span&gt;
+
                     &lt;/form&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -411,7 +495,7 @@ export class SigninComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1 class="top-buffer">Sign In</h1><hr><div class="container">                <div class="row justify-content-center">            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">                                    <form (ngSubmit)="onSignin(f)" #f="ngForm">                        <div class="form-group">                            <label for="email">E-Mail</label>                            <input type="email" id="email" name="email" class="form-control" ngModel>                        </div>                        <div class="form-group">                                <label for="password">Password</label>                                <input type="password" id="password" name="password" class="form-control" ngModel>                        </div>                        <button class="btn btn-primary" type="submit">Sign in</button>                    </form>            </div>        </div></div>        </div>'
+        var COMPONENT_TEMPLATE = '<div><h1 class="top-buffer">Sign In</h1><hr><div class="container">                <div class="row justify-content-center">            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">                                    <form (ngSubmit)="onSignin(f)" #f="ngForm">                        <div class="form-group">                            <label for="email">E-Mail</label>                            <input type="email" id="email" name="email" class="form-control" ngModel>                        </div>                        <div class="form-group">                                <label for="password">Password</label>                                <input type="password" id="password" name="password" class="form-control" ngModel>                        </div>                        <button class="btn btn-primary" type="submit">Sign in</button>                        <span class="help-block left-buffer" *ngIf="wrongUserCredentials">Wrong username or password</span>                    </form>            </div>        </div></div>        </div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SigninComponent'};

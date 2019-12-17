@@ -28,13 +28,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToDoListComponent } from './overview/to-do-list/to-do-list.component';
 import { DataSummaryComponent } from './overview/data-summary/data-summary.component';
-import { DashboardComponent } from './overview/dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { PdfFrameComponent } from './documents/pdf-frame/pdf-frame.component';
 import { PdfFrameScanComponent } from './scan/pdf-frame-scan/pdf-frame-scan.component';
-import { DocNavigationComponent } from './documents/doc-navigation/doc-navigation.component';
 import { DocListComponent } from './documents/doc-list/doc-list.component';
-import { DocDetailsComponent } from './documents/doc-details/doc-details.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ScanComponent } from './scan/scan.component';
 import { DocumentFormComponent } from './scan/document-form/document-form.component';
@@ -62,14 +59,11 @@ const appRoutes: Routes = [
     NavigationComponent,
     ToDoListComponent,
     DataSummaryComponent,
-    DashboardComponent,
     DocumentsComponent,
     PdfFrameComponent,
     PdfFrameScanComponent,
-    DocNavigationComponent,
     DocListComponent,
     ScanComponent,
-    DocDetailsComponent,
     DocumentFormComponent,
     ImportControlComponent
   ],

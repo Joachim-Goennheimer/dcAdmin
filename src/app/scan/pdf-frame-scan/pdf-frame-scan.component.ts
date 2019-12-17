@@ -12,7 +12,6 @@ import { DocumentsService } from '../../documents.service';
 })
 export class PdfFrameScanComponent implements OnInit {
 
-  // pdfSrc: string = './assets/ProblemSheet03(1).pdf';
   pdfSrc: object;
   page = 1;
   totalPages: number;
@@ -29,7 +28,6 @@ export class PdfFrameScanComponent implements OnInit {
     );
 
   }
-
 
   afterLoadComplete(pdfData: any) {
     this.totalPages = pdfData.numPages;

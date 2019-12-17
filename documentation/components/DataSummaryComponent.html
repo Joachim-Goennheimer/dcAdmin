@@ -90,7 +90,7 @@
             <tr>
                 <td class="col-md-3">providers</td>
                 <td class="col-md-9">
-                                <code><a href="../classes/DataSummaryService.html" target="_self" >DataSummaryService</a></code>
+                                <code><a href="../injectables/DataSummaryService.html" target="_self" >DataSummaryService</a></code>
                 </td>
             </tr>
 
@@ -171,7 +171,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dataSummaryService: <a href="../classes/DataSummaryService.html">DataSummaryService</a>)</code>
+<code>constructor(dataSummaryService: <a href="../injectables/DataSummaryService.html">DataSummaryService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -197,7 +197,7 @@
                                                         <td>dataSummaryService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/DataSummaryService.html" target="_self" >DataSummaryService</a></code>
+                                                                        <code><a href="../injectables/DataSummaryService.html" target="_self" >DataSummaryService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -286,6 +286,11 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new DataSummaryModel()</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:13</a></div>
@@ -313,12 +318,24 @@ import { DataSummaryModel } from &#x27;./data-summary.model&#x27;;
 })
 export class DataSummaryComponent implements OnInit {
 
-  dataSummary: DataSummaryModel;
+  dataSummary: DataSummaryModel &#x3D; new DataSummaryModel();
 
   constructor(private dataSummaryService: DataSummaryService) { }
 
   ngOnInit() {
-    this.dataSummary &#x3D; this.dataSummaryService.getDataSummary();
+    this.dataSummaryService.getDataSummary()
+      .subscribe(
+        (response) &#x3D;&gt; {
+            this.dataSummary.username &#x3D; response.username;
+            this.dataSummary.firstName &#x3D; response.firstName;
+            this.dataSummary.lastName &#x3D; response.lastName;
+            this.dataSummary.lastLoggedIn &#x3D; response.lastLoggedIn;
+            this.dataSummary.email &#x3D; response.email;
+            this.dataSummary.totalDocumentCount &#x3D; response.documentCount;
+            this.dataSummary.totalToDosCount &#x3D; response.todoCount;
+        },
+        (error) &#x3D;&gt; console.log(error)
+        );
 
   }
 
@@ -328,12 +345,13 @@ export class DataSummaryComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ul&gt;
-    &lt;li&gt;User: {{ dataSummary.user }}&lt;/li&gt;
-    &lt;li&gt;Last time logged in: {{ dataSummary.lastTimeLoogedIn }}&lt;/li&gt;
+    &lt;li&gt;User: {{ dataSummary.username }}&lt;/li&gt;
+    &lt;li&gt;First Name: {{ dataSummary.firstName }}&lt;/li&gt;
+    &lt;li&gt;Last Name: {{ dataSummary.lastName }}&lt;/li&gt;
+    &lt;li&gt;Last time logged in: {{ dataSummary.lastLoogedIn }}&lt;/li&gt;
     &lt;li&gt;Total To-Dos: {{ dataSummary.totalToDosCount }}&lt;/li&gt;
     &lt;li&gt;Total Documents: {{ dataSummary.totalDocumentsCount }}&lt;/li&gt;
-    &lt;li&gt;Flagged Documents: {{ dataSummary.flaggedDocumentCounter }}&lt;/li&gt;
-    &lt;li&gt;E-Mail address linked to account: {{ dataSummary.connectedEmail }}&lt;/li&gt;
+    &lt;li&gt;E-Mail address linked to account: {{ dataSummary.email }}&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
     </div>
 
@@ -369,7 +387,7 @@ export class DataSummaryComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul>    <li>User: {{ dataSummary.user }}</li>    <li>Last time logged in: {{ dataSummary.lastTimeLoogedIn }}</li>    <li>Total To-Dos: {{ dataSummary.totalToDosCount }}</li>    <li>Total Documents: {{ dataSummary.totalDocumentsCount }}</li>    <li>Flagged Documents: {{ dataSummary.flaggedDocumentCounter }}</li>    <li>E-Mail address linked to account: {{ dataSummary.connectedEmail }}</li></ul></div>'
+        var COMPONENT_TEMPLATE = '<div><ul>    <li>User: {{ dataSummary.username }}</li>    <li>First Name: {{ dataSummary.firstName }}</li>    <li>Last Name: {{ dataSummary.lastName }}</li>    <li>Last time logged in: {{ dataSummary.lastLoogedIn }}</li>    <li>Total To-Dos: {{ dataSummary.totalToDosCount }}</li>    <li>Total Documents: {{ dataSummary.totalDocumentsCount }}</li>    <li>E-Mail address linked to account: {{ dataSummary.email }}</li></ul></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DataSummaryComponent'};

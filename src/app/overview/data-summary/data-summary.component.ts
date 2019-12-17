@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataSummaryService } from './data-summary.service';
 import { DataSummaryModel } from './data-summary.model';
 
+/**
+ * Component that retrieves some summary data from the server using the DataSummaryService
+ * and then displays it to the user.
+ */
 @Component({
   selector: 'app-data-summary',
   templateUrl: './data-summary.component.html',

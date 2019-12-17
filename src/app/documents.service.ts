@@ -32,8 +32,9 @@ export class DocumentsService {
 
     }
 
-
-    // starts the import of new documents.
+    /**
+     *  starts the import of new documents and sets current file count.
+     */
     importDocuments() {
       const accessToken = this.authService.getToken();
       const headers = new HttpHeaders({
@@ -90,6 +91,10 @@ export class DocumentsService {
 
     }
 
+    /**
+     * retrieves the institutions that the user has already entered. These institutions can then be assigned when entering
+     * the information for new documents that have been scanned.
+     */
     getAvailableInstitutions() {
         const accessToken = this.authService.getToken();
         const httpOptions = {
@@ -102,6 +107,10 @@ export class DocumentsService {
         return this.http.get('https://webfileviewerproject.herokuapp.com/institutions', httpOptions);
     }
 
+    /**
+     * adds a new institution to the database. So far no delete functionality implemented.
+     * @param institutionName name of the institution that the user wants to add to the database
+     */
     createNewInstitution(institutionName: string) {
 
         const accessToken = this.authService.getToken();
@@ -119,7 +128,10 @@ export class DocumentsService {
         );
     }
 
-    // function that
+    /**
+     * retrieves the information of all documents in the database and adds it to an array.
+     * This array is the used in the Doc-list component to display the documents data in a table.
+     */
     getDocumentsInformation() {
         class ReturnObjectFormat {
             documentInfo: DocumentBP[];
@@ -168,7 +180,10 @@ export class DocumentsService {
             );
     }
 
-    // requesting a document as pdf given its documentID
+    /**
+     * requesting a document as pdf given its documentID
+     * @param documentID the id of the document the user clicked on in the docuents table
+     */
     getDocumentPDFByID(documentID: number) {
 
         const accessToken = this.authService.getToken();
@@ -188,6 +203,10 @@ export class DocumentsService {
             );
     }
 
+    /**
+     * helper function that adds a document to the documents array.
+     * @param document the document that should be added to the array
+     */
     addToDocumentInformationArray(document: DocumentBP) {
       const addingDocument = new DocumentBP(
         document.id,

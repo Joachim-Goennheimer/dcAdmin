@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { DocumentsService } from 'src/app/documents.service';
 
+/**
+ * Component that handles the import of documents. Uses the DocumentsService to retrieve
+ * new documents from the server and updates the progress bar for user to be informed
+ * about current state of imports
+ */
 @Component({
   selector: 'app-import-control',
   templateUrl: './import-control.component.html',
@@ -8,8 +13,6 @@ import { DocumentsService } from 'src/app/documents.service';
 })
 export class ImportControlComponent implements OnInit {
   @ViewChild('importProgressBar', {static: false}) importProgressbar: ElementRef;
-  // @ViewChild("currentlyImportingDocumentNumber", {static: false}) currentlyImportingDN: ElementRef;
-  // @ViewChild("totallyImportingDocumentsNumber", {static: false}) totallyImportingDN: ElementRef;
 
   isImporting = false;
   totalDocumentsCurrentlyImporting = 0;
@@ -53,20 +56,6 @@ export class ImportControlComponent implements OnInit {
 
     this.dcService.importDocuments();
   }
-
-  // onProgressClick() {
-
-  //   let progressWidthString = '0%';
-  //   this.documentNumberCurrentlyImporting++;
-  //   this.progressWidth = this.calculateCurrentProgressWidth();
-  //   console.log(this.progressWidth);
-
-  //   progressWidthString = this.progressWidth * 100 + '%';
-  //   console.log(progressWidthString);
-
-  //   this.renderer.setStyle(this.importProgressbar.nativeElement, 'width', progressWidthString);
-
-  // }
 
   setProgressBar() {
     let progressWidthString = '0%';

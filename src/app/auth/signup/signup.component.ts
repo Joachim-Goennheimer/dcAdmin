@@ -19,6 +19,11 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Method invoked when user presses register. Calls authservice to check if passwords are the same.
+   * So far no check whether username already in use.
+   * @param form holds login data from html form
+   */
   onSignup(form: NgForm) {
     const email = form.value.email;
     const username = form.value.userName;

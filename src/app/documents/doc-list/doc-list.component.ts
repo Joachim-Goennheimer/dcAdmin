@@ -10,6 +10,12 @@ import { saveAs } from 'file-saver';
 const initialSelection = [];
 const allowMultiSelect = false;
 
+/**
+ * Component that handles the information about the documents on the server.
+ * Impements functionalities like filtering and search.
+ * When the user selects a document in the table it will request the corresponding pdf
+ * from the server using the DocumentsService.
+ */
 @Component({
   selector: 'app-doc-list',
   templateUrl: './doc-list.component.html',
@@ -56,9 +62,6 @@ export class DocListComponent implements OnInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: DocumentBP): string {
-    if (!row) {
-      // return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.year + 1}`;
   }
 }

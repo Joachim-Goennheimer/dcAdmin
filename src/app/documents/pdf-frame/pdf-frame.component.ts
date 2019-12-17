@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { DocumentsService } from '../../documents.service';
 
+/**
+ * Component that handles the pdf display.
+ * Fetches the pdf als blob from the server using the Documentsservice.
+ */
 @Component({
   selector: 'app-pdf-frame',
   templateUrl: './pdf-frame.component.html',
@@ -9,7 +13,6 @@ import { DocumentsService } from '../../documents.service';
 })
 export class PdfFrameComponent implements OnInit {
 
-  // pdfSrc: string = './assets/ProblemSheet03(1).pdf';
   pdfSrc: object;
   page = 1;
   totalPages: number;
