@@ -8,7 +8,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "npx compodoc -p tsconfig.json"
+    "compodoc": "npx compodoc -p tsconfig.json",
+    "gulp-run": "gulp run",
+    "gulp-start": "gulp start",
+    "gulp-stop": "gulp stop",
+    "gulp-destroy": "gulp destroy"
   },
   "private": true,
   "dependencies": {
@@ -37,7 +41,9 @@
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "gulp": "^4.0.2",
+    "child_process": "^1.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.7",
