@@ -37,14 +37,10 @@ export class UserProfileComponent implements OnInit {
     this.upService.getUserProfileData()
       .subscribe(
         (response) => {
-          console.log("getting User Data");
-          console.log(response);
           this.userProfile.username = response.username;
           this.userProfile.firstName = response.firstName;
           this.userProfile.lastName = response.lastName;
           this.userProfile.email = response.email;
-          console.log(this.userProfile);
-
         },
         (error) => console.log(error)
       );
@@ -67,8 +63,8 @@ export class UserProfileComponent implements OnInit {
    * @param image image data from server as blob object
    */
   createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
        this.currentUserPictureURL = reader.result;
     }, false);
 
@@ -83,16 +79,16 @@ export class UserProfileComponent implements OnInit {
    * when the user clicks on upload the onEditProfilePicuture() function will be invoked
    * and the new profile picture is sent to the server
    */
-  onProfilePictureChanged(event){
-    this.newUserPictureFile = event.target.files[0]
-    this.currentUserPictureURL = this.createImageFromBlob(event.target.files[0])
+  onProfilePictureChanged(event) {
+    this.newUserPictureFile = event.target.files[0];
+    this.currentUserPictureURL = this.createImageFromBlob(event.target.files[0]);
     this.showSaveNewPictureButton = true;
   }
 
   /**
    * function that sends request to server to update user picture there.
    */
-  onEditProfilePicture(){
+  onEditProfilePicture() {
     this.upService.editUserProfilePicture(this.newUserPictureFile);
     this.showSaveNewPictureButton = false;
   }

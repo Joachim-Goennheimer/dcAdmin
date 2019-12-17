@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Injectable()
 export class TodoListService {
 
+  serverUrl = 'http://localhost:3000';
+
   // Placeholder for last id so we can simulate
   // automatic incrementing of ids
   lastId = 0;
@@ -16,37 +18,23 @@ export class TodoListService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  getTodos() {
-    const todos = [{
-      id: 10,
-      title: "title2"
-  }];
-  return todos;
-}
-
   // Simulate POST /todos
   addTodo(todo: TodoItem): TodoListService {
 
     const accessToken = this.authService.getToken();
     const httpOptions = {
             headers: new HttpHeaders({
-              // 'responseType':  'application/json',
-            //   'Authorization': 'my-auth-token',
               'x-access-token': accessToken
             })
         };
 
-    this.http.post('https://webfileviewerproject.herokuapp.com/createTodo', {todoTitle: todo.title}, httpOptions)
+    this.http.post(this.serverUrl + '/createTodo', {todoTitle: todo.title}, httpOptions)
     .subscribe(
       (response: Response) => {
         console.log(response);
       },
       (error) => console.log(error)
       );
-    // if (!todo.id) {
-    //   todo.id = ++this.lastId;
-    // }
-    // this.todos.push(todo);
     this.loadAllTodos();
     return this;
   }
@@ -57,13 +45,11 @@ export class TodoListService {
     const accessToken = this.authService.getToken();
     const httpOptions = {
             headers: new HttpHeaders({
-              // 'responseType':  'application/json',
-            //   'Authorization': 'my-auth-token',
               'x-access-token': accessToken
             })
         };
 
-    this.http.post('https://webfileviewerproject.herokuapp.com/deleteTodo', {todoID: id}, httpOptions)
+    this.http.post(this.serverUrl + '/deleteTodo', {todoID: id}, httpOptions)
     .subscribe(
       (response: Response) => {
         console.log(response);
@@ -108,7 +94,7 @@ export class TodoListService {
               'x-access-token': accessToken
             })
         };
-    this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/todos', httpOptions)
+    this.http.get<ReturnObjectFormat>(this.serverUrl + '/todos', httpOptions)
     .subscribe(
       (response) => {
         this.todos = [];
@@ -147,7 +133,7 @@ export class TodoListService {
       requestType = 'unmarkTodo';
     }
 
-    this.http.post('https://webfileviewerproject.herokuapp.com/' + requestType, {todoID: todo._id}, httpOptions)
+    this.http.post(this.serverUrl + '/' + requestType, {todoID: todo._id}, httpOptions)
     .subscribe(
       (response: Response) => {
         console.log(response);

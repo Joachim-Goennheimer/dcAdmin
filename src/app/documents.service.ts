@@ -12,6 +12,7 @@ import { AuthService } from './auth/auth.service';
 @Injectable()
 export class DocumentsService {
 
+    serverUrl = 'http://localhost:3000';
 
     returnHeaders = {};
     // stores information about all the documents sent by server
@@ -40,20 +41,19 @@ export class DocumentsService {
       const headers = new HttpHeaders({
               'x-access-token': accessToken,
       });
-      console.log("Import started");
-      this.http.get('https://webfileviewerproject.herokuapp.com/importDocuments',
+      this.http.get(this.serverUrl + '/importDocuments',
                     {headers, responseType: 'arraybuffer' as 'json', observe: 'response' })
       .subscribe(
           (response) => {
-              console.log(response);
-              console.log(response.headers.get('filecount'));
-              const keys = response.headers.keys();
-              this.returnHeaders = keys.map(key =>
-              `${key}: ${response.headers.get(key)}`);
+              // console.log(response);
+              console.log('File Count: ' + response.headers.get('filecount'));
+              // const keys = response.headers.keys();
+              // this.returnHeaders = keys.map(key =>
+              // `${key}: ${response.headers.get(key)}`);
 
               this.scannedPdfSubject.next(response.body);
               this.scannTotalCountSubject.next(response.headers.get('filecount'));
-              this.scannCurrentCount = 1;
+              this.scannCurrentCount = 0;
               this.scannCurrentCountSubject.next(this.scannCurrentCount);
             },
             (error) => console.log(error)
@@ -70,19 +70,18 @@ export class DocumentsService {
     saveDocument(document: object) {
         const accessToken = this.authService.getToken();
         const headers = new HttpHeaders({
-          //     'host': "webfileviewerproject.herokuapp.com",
             'Access-Control-Allow-Origin': '*',
-          //   'Accept': '*/*',
             'content-type': 'application/json',
             'x-access-token': accessToken
           });
 
-        this.http.post('https://webfileviewerproject.herokuapp.com/currentDocumentData', document,
+        this.http.post(this.serverUrl + '/currentDocumentData', document,
                       {headers, responseType: 'arraybuffer' as 'json', observe: 'response'})
         .subscribe(
             (response) => {
               this.scannedPdfSubject.next(response.body);
-              this.scannTotalCountSubject.next(response.headers.get('filecount'));
+              console.log(response.headers.get('filecount'));
+              // this.scannTotalCountSubject.next(response.headers.get('filecount'));
               this.scannCurrentCount++;
               this.scannCurrentCountSubject.next(this.scannCurrentCount);
             },
@@ -104,7 +103,7 @@ export class DocumentsService {
               'x-access-token': accessToken
             })
         };
-        return this.http.get('https://webfileviewerproject.herokuapp.com/institutions', httpOptions);
+        return this.http.get(this.serverUrl + '/institutions', httpOptions);
     }
 
     /**
@@ -121,7 +120,7 @@ export class DocumentsService {
               'x-access-token': accessToken
             })
         };
-        this.http.post('https://webfileviewerproject.herokuapp.com/createInstitution', {institution: institutionName}, httpOptions)
+        this.http.post(this.serverUrl + '/createInstitution', {institution: institutionName}, httpOptions)
         .subscribe(
           (response) => console.log(response),
           (error) => console.log(error)
@@ -149,7 +148,7 @@ export class DocumentsService {
         // remove all elements of array before loading documentInfo. Otherwise would be duplicated.
         this.documentsInformation = [];
 
-        this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/documents', httpOptions)
+        this.http.get<ReturnObjectFormat>(this.serverUrl + '/documents', httpOptions)
         .subscribe(
             (response) => {
                 response.documentInfo.forEach((document: DocumentBP) => {
@@ -170,7 +169,7 @@ export class DocumentsService {
               'x-access-token': accessToken,
         });
 
-        this.http.get('https://webfileviewerproject.herokuapp.com/document', {headers, responseType: 'arraybuffer' as 'json'})
+        this.http.get(this.serverUrl + '/document', {headers, responseType: 'arraybuffer' as 'json'})
         .subscribe(
             (response) => {
                 this.pdfSubject.next(response);
@@ -191,7 +190,7 @@ export class DocumentsService {
               'x-access-token': accessToken,
         });
 
-        const requestString = 'https://webfileviewerproject.herokuapp.com/documentPDF/' + documentID;
+        const requestString = this.serverUrl + '/documentPDF/' + documentID;
 
         this.http.get(requestString, {headers, responseType: 'arraybuffer' as 'json'})
         .subscribe(

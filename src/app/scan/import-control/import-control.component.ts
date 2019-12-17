@@ -25,7 +25,7 @@ export class ImportControlComponent implements OnInit {
     private dcService: DocumentsService,
     private renderer: Renderer2) {
   }
-
+  
   ngOnInit() {
 
     // Listening and updating the number of documents that will be imported
@@ -42,10 +42,9 @@ export class ImportControlComponent implements OnInit {
           this.isImporting = false;
           this.totalDocumentsCurrentlyImporting = 0;
           this.documentNumberCurrentlyImporting = 0;
-          // this.resetProgressBar();
           this.isImporting = false;
         }
-          this.setProgressBar();
+        this.setProgressBar();
       },
       (error) => console.log(error)
     );
@@ -59,7 +58,7 @@ export class ImportControlComponent implements OnInit {
 
   setProgressBar() {
     let progressWidthString = '0%';
-    if (this.documentNumberCurrentlyImporting != 0) {
+    if (this.documentNumberCurrentlyImporting !== 0) {
         this.progressWidth = this.calculateCurrentProgressWidth();
         progressWidthString = this.progressWidth * 100 + '%';
     }
@@ -67,7 +66,7 @@ export class ImportControlComponent implements OnInit {
   }
 
   resetProgressBar() {
-    let progressWidthString = '0%';
+    const progressWidthString = '0%';
     this.renderer.setStyle(this.importProgressbar.nativeElement, 'width', progressWidthString);
 }
 

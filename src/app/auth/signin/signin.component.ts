@@ -15,13 +15,13 @@ import { NgForm } from '@angular/forms';
  */
 export class SigninComponent implements OnInit {
 
+  wrongUserCredentials = false;
+
   constructor(private authservice: AuthService) { }
 
   ngOnInit() {
 
   }
-
-  wrongUserCredentials = false;
 
   /**
    * Method invoked when user presses login. Calls authservice to check if valid usercredentials.
@@ -38,10 +38,7 @@ export class SigninComponent implements OnInit {
       (signInSuccessMessage: boolean) => {
         this.wrongUserCredentials = !signInSuccessMessage;
       }
-
-    )
+    );
     console.log('signing in');
-
   }
-
 }

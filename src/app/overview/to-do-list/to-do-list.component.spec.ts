@@ -22,7 +22,6 @@ describe('ToDoListComponent', () => {
     let comp: ToDoListComponent;
     let fixture: ComponentFixture<ToDoListComponent>;
     let todoListStub: TodoListStub;
-     
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -35,7 +34,7 @@ describe('ToDoListComponent', () => {
             ]
         }).overrideComponent(ToDoListComponent, {
             set: {
-                providers: [ 
+                providers: [
                     {provide: TodoListService, useClass: TodoListStub},
                     AuthService
                 ]
@@ -43,19 +42,16 @@ describe('ToDoListComponent', () => {
             }
         })
         .compileComponents();
-    }))
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ToDoListComponent);
 
         comp = fixture.componentInstance;
         todoListStub = fixture.debugElement.injector.get(TodoListService);
-
-        // const spy = spyOn(todoListStub, 'loadAllTodos');
-
         fixture.detectChanges();
 
-    })
+    });
 
     it('should create', () => {
         expect(comp).toBeTruthy();
@@ -76,7 +72,7 @@ describe('ToDoListComponent', () => {
     it('should display todos to the user', fakeAsync(() => {
         const spy = spyOn(todoListStub, 'loadAllTodos');
         tick();
-        let toDoDisplayElement: DebugElement = fixture.debugElement.query(By.css('.view > label'));
+        const toDoDisplayElement: DebugElement = fixture.debugElement.query(By.css('.view > label'));
         expect(toDoDisplayElement.nativeElement.textContent).toContain('testTodo1');
     }));
 
@@ -85,13 +81,13 @@ describe('ToDoListComponent', () => {
         // let todoInputElement: DebugElement = fixture.debugElement.query(By.css('.new-todo'));
         // todoInputElement.nativeElement.value = "inputTodo";
 
-        comp.newTodoItem.title = "inputTodo";
+        comp.newTodoItem.title = 'inputTodo';
 
         fixture.detectChanges();
-        expect(comp.newTodoItem.title).toBe("inputTodo");
+        expect(comp.newTodoItem.title).toBe('inputTodo');
         comp.addTodo();
         tick();
-        expect(comp.todos[2].title).toBe("inputTodo");
+        expect(comp.todos[2].title).toBe('inputTodo');
 
 
     }));
@@ -105,9 +101,9 @@ describe('ToDoListComponent', () => {
         tick();
         fixture.detectChanges();
         comp.removeTodo(12);
-        expect(comp.todos[0].title).not.toBe("testTodo1");
+        expect(comp.todos[0].title).not.toBe('testTodo1');
 
 
     }));
 
-})
+});

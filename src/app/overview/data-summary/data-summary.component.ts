@@ -32,7 +32,5 @@ export class DataSummaryComponent implements OnInit {
         },
         (error) => console.log(error)
         );
-
   }
-
 }

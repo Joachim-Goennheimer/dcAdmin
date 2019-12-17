@@ -9,6 +9,8 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class AuthService {
 
+    serverUrl = 'http://localhost:3000';
+
     accessToken: string;
     signInSuccessSubject = new Subject();
 
@@ -24,14 +26,14 @@ export class AuthService {
             lastName
         };
 
-        this.http.post('https://webfileviewerproject.herokuapp.com/register', userCredentials)
+        this.http.post(this.serverUrl + '/register', userCredentials)
         .subscribe(
             (response) => {
-                console.log(response)
+                console.log(response);
                 this.router.navigate(['/login']);
             },
             (error) => {
-                console.log(error)
+                console.log(error);
                 this.router.navigate(['/login']);
             }
         );
@@ -52,7 +54,7 @@ export class AuthService {
             password
         };
 
-        this.http.post('https://webfileviewerproject.herokuapp.com/login', userCredentials)
+        this.http.post(this.serverUrl + '/login', userCredentials)
         .subscribe(
             (response: LoginResponse) => {
                 this.accessToken = response.token;
@@ -60,7 +62,7 @@ export class AuthService {
                 console.log(response);
             },
             (error) => {
-                console.log(error)
+                console.log(error);
                 this.signInSuccessSubject.next(false);
             }
         );

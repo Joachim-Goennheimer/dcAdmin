@@ -39,7 +39,6 @@ export class ToDoListComponent implements OnInit {
 
   get todos() {
     return this.todoListService.getAllTodos();
-    // return this.toDoItems;
   }
 
 }

@@ -9,6 +9,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataSummaryService {
 
+    serverUrl = 'http://localhost:3000';
+
     dataSummary: DataSummaryModel;
     constructor(private http: HttpClient, private authService: AuthService) {
         this.dataSummary = new DataSummaryModel();
@@ -34,6 +36,6 @@ export class DataSummaryService {
             'x-access-token': accessToken
             })
         };
-        return this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/userInfo', httpOptions);
+        return this.http.get<ReturnObjectFormat>(this.serverUrl + '/userInfo', httpOptions);
     }
 }

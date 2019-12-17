@@ -3,8 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserProfile } from './user-profile.model';
 
+/**
+ * Service that manages communication of user data with server.
+ */
 @Injectable()
 export class UserProfileService {
+
+    serverUrl = 'http://localhost:3000';
 
     constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -24,39 +29,33 @@ export class UserProfileService {
                 headers: new HttpHeaders({
                 'x-access-token': accessToken
                 }),
-                // responseType: 'arraybuffer' as 'json'
         };
 
-        return this.http.get<ReturnObjectFormat>('https://webfileviewerproject.herokuapp.com/userInfo', httpOptions);
+        return this.http.get<ReturnObjectFormat>(this.serverUrl + '/userInfo', httpOptions);
     }
 
     getUserProfilePicture() {
 
         const accessToken = this.authService.getToken();
         const headers = new HttpHeaders({
-                // 'Content-Type': 'application/x-www-form-urlencoded',
                 'x-access-token': accessToken
                 });
-                // 'mimeType': 'multipart/form-data',
-                // 'data': 'form'
 
-        console.log("in getUserProfilePicture request");
-        return this.http.get('https://webfileviewerproject.herokuapp.com/userPicture', {headers, responseType: 'blob'})
+        return this.http.get(this.serverUrl + '/userPicture', {headers, responseType: 'blob'});
     }
 
     editUserProfilePicture(newUserPicture) {
         const accessToken = this.authService.getToken();
         const httpOptions = {
                 headers: new HttpHeaders({
-                // responseType:  'image/jpg',
                 'x-access-token': accessToken,
                 }),
         };
 
         const uploadData = new FormData();
-        uploadData.append('image', newUserPicture, "userPicture.png");
+        uploadData.append('image', newUserPicture, 'userPicture.png');
 
-        this.http.post('https://webfileviewerproject.herokuapp.com/updatePicture', uploadData, httpOptions)
+        this.http.put(this.serverUrl + '/updatePicture', uploadData, httpOptions)
         .subscribe(
             (response) => console.log(response),
             (error) => console.log(error)
@@ -78,6 +77,6 @@ export class UserProfileService {
             lastName: updateProfile.lastName,
             email: updateProfile.email
         };
-        return this.http.put('https://webfileviewerproject.herokuapp.com/editUser', updateObject , httpOptions);
+        return this.http.put(this.serverUrl + '/editUser', updateObject , httpOptions);
     }
 }
