@@ -44,6 +44,7 @@ export class DocumentFormComponent implements OnInit {
    * holds institutions that are currently in the database.
    */
   availableInstitutions = [];
+  noImportedDocument = true;
 
   date = new FormControl(moment());
 
@@ -68,15 +69,18 @@ export class DocumentFormComponent implements OnInit {
     .subscribe(
       (response: InstitutionsResponse) => {
         this.availableInstitutions = response.institutions;
-        console.log('Retrieving institutions');
-        console.log(response.institutions);
       }
     );
 
+    this.dcService.noImportedDocumentSubject
+    .subscribe(
+      (response: boolean) => {
+        this.noImportedDocument = response;
+      }
+    );
   }
 
   onAddNewInstitution(institution: string) {
-    console.log('Adding institution: ' + institution);
     this.dcService.createNewInstitution(institution);
   }
 
@@ -85,9 +89,7 @@ export class DocumentFormComponent implements OnInit {
    * @param institution instituion the user wants to add to the databse
    */
   addNewInstitution(institution: string) {
-    console.log(institution);
     if (this.availableInstitutions.includes(institution)) {
-      console.log('Already in list');
     } else {
       this.availableInstitutions.push(institution);
       this.dcService.createNewInstitution(institution);
@@ -106,19 +108,13 @@ export class DocumentFormComponent implements OnInit {
     };
 
     this.dcService.saveDocument(documentInformation);
-    console.log(form);
-    // console.log(this.date.value.year())
-    // console.log(this.date.value.month())
-    console.log(documentInformation);
   }
 
   open(newInstitution: string) {
     this.modalService.open(newInstitution, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
-      console.log(this.closeResult);
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      console.log(this.closeResult);
     });
   }
 
@@ -131,9 +127,5 @@ export class DocumentFormComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
-  // $('#myModal').on('shown.bs.modal', function () {
-  //   $('#myInput').trigger('focus')
-  // })
 
 }

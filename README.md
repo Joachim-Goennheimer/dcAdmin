@@ -1,6 +1,28 @@
 # DcAdmin
 
+Matrikel-Nr: 3406999
+Matrikel-Nr: 5483613
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.7.
+
+Certain features are not yet fully developed or need some more refinement to be production ready.
+
+## Running the application
+
+First the dcadmin-backend has to be installed and it needs to be running. Otherwise the e2e tests will fail and the build not work.
+You have to have the Chrome browser installed because the tests utilize Chrome.
+
+1. run `npm i` to install dependencies
+2. run `npm run gulp-run` to build and run docker container and to start the application
+3. go to localhost:4200
+
+After completing the build process the application needs a few seconds for the docker container to be ready. If localhost:4200 does not open the application, wait a few seconds and reload the page.
+
+## Stopping the application
+
+To stop the application run `npm run gulp-stop`
+To start the application again run `npm run gulp-start`
+To stop the application and destroy the docker containers and images run `npm run gulp-destroy`
 
 ## Development server
 

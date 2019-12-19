@@ -24,8 +24,9 @@ export class ImportControlComponent implements OnInit {
   constructor(
     private dcService: DocumentsService,
     private renderer: Renderer2) {
-  }
-  
+
+    }
+
   ngOnInit() {
 
     // Listening and updating the number of documents that will be imported
@@ -38,11 +39,12 @@ export class ImportControlComponent implements OnInit {
       (response: number) => {
         this.documentNumberCurrentlyImporting = response;
         // checks if import is finished
-        if (this.documentNumberCurrentlyImporting > this.totalDocumentsCurrentlyImporting) {
+        if (this.documentNumberCurrentlyImporting >= this.totalDocumentsCurrentlyImporting) {
           this.isImporting = false;
           this.totalDocumentsCurrentlyImporting = 0;
           this.documentNumberCurrentlyImporting = 0;
           this.isImporting = false;
+          this.dcService.importProcessFinished();
         }
         this.setProgressBar();
       },

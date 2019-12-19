@@ -15,7 +15,6 @@
                 </div>
                 <div class="col">
                     <label for="importance" class="customLabel">Importance</label>
-                  <!-- <label for="importance">importance</label> -->
                     <select required ngModel name="importance" class="form-control importanceSelector" id="importance">
                         <option [value]="1">1</option>
                         <option [value]="2">2</option>
@@ -38,16 +37,12 @@
           <label for="documentTitle" class="customLabel">Document Title</label>
           <input required minlength="2" ngModel type="text" name="documentTitle" class="form-control">
         </div>
-        <!-- <div class="row top-buffer">
-          <label for="shortDescription" class="customLabel">Short description</label>
-          <input required minlenth="2" ngModel type="text" name="shortDescription" class="form-control">
-        </div> -->
         <div class="row top-buffer">
             <label for="details" class="customLabel">Details</label>
           <textarea ngModel class="form-control" name="details" id="documentDetails" rows="3"></textarea>
         </div>
         <div class="row top-buffer">
-            <button [disabled]="f.form.invalid" type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
+            <button [disabled]="f.form.invalid||noImportedDocument" type="submit" class="btn btn-outline-dark btn-lg btn-block">Save Document</button>
         </div>
 
 
@@ -75,7 +70,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-outline-dark" (click)="modal.close(newInstitution)">add</button> -->
     <button type="button" class="btn btn-outline-dark" (click)="addNewInstitution(newInstitution)">add</button>
   </div>
 </ng-template>

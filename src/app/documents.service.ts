@@ -27,6 +27,7 @@ export class DocumentsService {
     scannTotalCountSubject = new Subject();
     scannCurrentCount = 0;
     scannCurrentCountSubject = new Subject();
+    noImportedDocumentSubject = new Subject();
 
 
     constructor(private http: HttpClient, private authService: AuthService) {
@@ -55,6 +56,7 @@ export class DocumentsService {
               this.scannTotalCountSubject.next(response.headers.get('filecount'));
               this.scannCurrentCount = 0;
               this.scannCurrentCountSubject.next(this.scannCurrentCount);
+              this.noImportedDocumentSubject.next(false);
             },
             (error) => console.log(error)
       );
@@ -88,6 +90,12 @@ export class DocumentsService {
             (error) => console.log(error)
         );
 
+    }
+
+    importProcessFinished() {
+      this.scannCurrentCount = 0;
+      this.scannTotalCountSubject.next(0);
+      this.noImportedDocumentSubject.next(true);
     }
 
     /**
