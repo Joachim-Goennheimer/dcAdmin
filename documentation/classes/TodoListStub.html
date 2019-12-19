@@ -150,7 +150,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -186,8 +186,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:21</a></div>
                 </td>
             </tr>
 
@@ -256,8 +256,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:25</a></div>
                 </td>
             </tr>
 
@@ -326,8 +326,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:34</a></div>
                 </td>
             </tr>
 
@@ -367,8 +367,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/app/overview/to-do-list/to-do-list-serviceStub.ts:14</a></div>
                 </td>
             </tr>
 
@@ -398,12 +398,10 @@
 import { TodoItem } from &#x27;./to-do-item.model&#x27;;
 
 const testData &#x3D; [
-    new TodoItem({_id: 12, title: &quot;testTodo1&quot;, marked: true}),
-    new TodoItem({_id: 15, title: &quot;testTodo2&quot;, marked: false}),
+    new TodoItem({_id: 12, title: &#x27;testTodo1&#x27;, marked: true}),
+    new TodoItem({_id: 15, title: &#x27;testTodo2&#x27;, marked: false}),
 
-]
-
-
+];
 
 export class TodoListStub {
 
@@ -411,49 +409,29 @@ export class TodoListStub {
 
     public loadAllTodos() {
 
-            this.todos.push(new TodoItem({_id: 12, title: &quot;testTodo1&quot;, marked: true}));
-            this.todos.push(new TodoItem({_id: 15, title: &quot;testTodo2&quot;, marked: false}));
+            this.todos.push(new TodoItem({_id: 12, title: &#x27;testTodo1&#x27;, marked: true}));
+            this.todos.push(new TodoItem({_id: 15, title: &#x27;testTodo2&#x27;, marked: false}));
 
     }
 
     addTodo(todo: TodoItem) {
         this.todos.push(todo);
-        // this.loadAllTodos;
     }
 
     deleteTodoById(id: number) {
 
-        console.log(&quot;in delete function&quot;);
-        console.log(this.todos);
-        // let deleteTodo &#x3D; new TodoItem({_id: 12, title: &quot;testTodo1&quot;, marked: true})
-
-        // let removeIndex &#x3D; this.todos.indexOf(deleteTodo);
-        // console.log(&quot;removeIndex: &quot; + removeIndex);
-        // if(removeIndex &gt; -1) {
-        //     console.log(&quot;removing&quot;);
-        //     this.todos.splice(removeIndex, 1);
-        // }
-
-        // let newArray &#x3D; this.todos.filter(function(todo) {
-        //     return todo._id !&#x3D;&#x3D; id;
-        // });
-
-        var index &#x3D; this.todos.map(function(item) {
-            return item._id
+        const index &#x3D; this.todos.map((item) &#x3D;&gt; {
+            return item._id;
         }).indexOf(12);
-        
         this.todos.splice(index, 1);
 
-        console.log(&quot;after delete&quot;);
-        console.log(this.todos);
     }
 
     getAllTodos(): TodoItem[] {
-        console.log(&quot;getTodos in stub&quot;);
         return this.todos;
-    
       }
-}</code></pre>
+}
+</code></pre>
     </div>
 </div>
 

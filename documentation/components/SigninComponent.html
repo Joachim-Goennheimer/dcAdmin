@@ -180,7 +180,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/auth/signin/signin.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/auth/signin/signin.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -249,8 +249,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/auth/signin/signin.component.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/auth/signin/signin.component.ts:22</a></div>
                 </td>
             </tr>
 
@@ -369,7 +369,7 @@ If not sets wrongUserCredentials to true and displays message to user.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/auth/signin/signin.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/auth/signin/signin.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -399,13 +399,13 @@ import { NgForm } from &#x27;@angular/forms&#x27;;
  */
 export class SigninComponent implements OnInit {
 
+  wrongUserCredentials &#x3D; false;
+
   constructor(private authservice: AuthService) { }
 
   ngOnInit() {
 
   }
-
-  wrongUserCredentials &#x3D; false;
 
   /**
    * Method invoked when user presses login. Calls authservice to check if valid usercredentials.
@@ -422,12 +422,9 @@ export class SigninComponent implements OnInit {
       (signInSuccessMessage: boolean) &#x3D;&gt; {
         this.wrongUserCredentials &#x3D; !signInSuccessMessage;
       }
-
-    )
+    );
     console.log(&#x27;signing in&#x27;);
-
   }
-
 }
 </code></pre>
     </div>
@@ -443,7 +440,7 @@ export class SigninComponent implements OnInit {
                     
                 &lt;form (ngSubmit)&#x3D;&quot;onSignin(f)&quot; #f&#x3D;&quot;ngForm&quot;&gt;
                         &lt;div class&#x3D;&quot;form-group&quot;&gt;
-                            &lt;label for&#x3D;&quot;email&quot;&gt;E-Mail&lt;/label&gt;
+                            &lt;label for&#x3D;&quot;email&quot;&gt;E-Mail/Username&lt;/label&gt;
                             &lt;input type&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; name&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; ngModel&gt;
                         &lt;/div&gt;
                         &lt;div class&#x3D;&quot;form-group&quot;&gt;
@@ -495,8 +492,8 @@ export class SigninComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1 class="top-buffer">Sign In</h1><hr><div class="container">                <div class="row justify-content-center">            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">                                    <form (ngSubmit)="onSignin(f)" #f="ngForm">                        <div class="form-group">                            <label for="email">E-Mail</label>                            <input type="email" id="email" name="email" class="form-control" ngModel>                        </div>                        <div class="form-group">                                <label for="password">Password</label>                                <input type="password" id="password" name="password" class="form-control" ngModel>                        </div>                        <button class="btn btn-primary" type="submit">Sign in</button>                        <span class="help-block left-buffer" *ngIf="wrongUserCredentials">Wrong username or password</span>                    </form>            </div>        </div></div>        </div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+        var COMPONENT_TEMPLATE = '<div><h1 class="top-buffer">Sign In</h1><hr><div class="container">                <div class="row justify-content-center">            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">                                    <form (ngSubmit)="onSignin(f)" #f="ngForm">                        <div class="form-group">                            <label for="email">E-Mail/Username</label>                            <input type="email" id="email" name="email" class="form-control" ngModel>                        </div>                        <div class="form-group">                                <label for="password">Password</label>                                <input type="password" id="password" name="password" class="form-control" ngModel>                        </div>                        <button class="btn btn-primary" type="submit">Sign in</button>                        <span class="help-block left-buffer" *ngIf="wrongUserCredentials">Wrong username or password</span>                    </form>            </div>        </div></div>        </div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SigninComponent'};
 </script>

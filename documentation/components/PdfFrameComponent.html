@@ -64,6 +64,14 @@
     <code>src/app/documents/pdf-frame/pdf-frame.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component that handles the pdf display.
+Fetches the pdf als blob from the server using the Documentsservice.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -188,7 +196,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -257,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -327,8 +335,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:36</a></div>
                 </td>
             </tr>
 
@@ -366,8 +374,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:23</a></div>
                 </td>
             </tr>
 
@@ -405,8 +413,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:40</a></div>
                 </td>
             </tr>
 
@@ -447,7 +455,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -479,7 +487,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -506,7 +514,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -533,7 +541,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/documents/pdf-frame/pdf-frame.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -550,6 +558,10 @@
 import { PdfViewerComponent } from &#x27;ng2-pdf-viewer&#x27;;
 import { DocumentsService } from &#x27;../../documents.service&#x27;;
 
+/**
+ * Component that handles the pdf display.
+ * Fetches the pdf als blob from the server using the Documentsservice.
+ */
 @Component({
   selector: &#x27;app-pdf-frame&#x27;,
   templateUrl: &#x27;./pdf-frame.component.html&#x27;,
@@ -557,7 +569,6 @@ import { DocumentsService } from &#x27;../../documents.service&#x27;;
 })
 export class PdfFrameComponent implements OnInit {
 
-  // pdfSrc: string &#x3D; &#x27;./assets/ProblemSheet03(1).pdf&#x27;;
   pdfSrc: object;
   page &#x3D; 1;
   totalPages: number;
@@ -646,7 +657,7 @@ export class PdfFrameComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><!-- <pdf-viewer [src]="pdfSrc"             [render-text]="true"            style="display: block;"            [page]="1"            [show-all]="false"            [original-size]="false"></pdf-viewer> --><div *ngIf="isLoaded" style="text-align: center;">        <button class="btn btn-outline-dark right-buffer" (click)="prevPage()" [disabled]="page === 1">Prev</button>        <span>{{ page }} / {{ totalPages }}</span>        <button class="btn btn-outline-dark left-buffer" (click)="nextPage()" [disabled]="page === totalPages">Next</button></div>            <pdf-viewer [src]="pdfSrc"                  style="display: block;"                  [show-all]="false"                  [page]="page"                  (after-load-complete)="afterLoadComplete($event)"      ></pdf-viewer></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PdfFrameComponent'};
 </script>

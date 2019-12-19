@@ -195,7 +195,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -264,8 +264,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:31</a></div>
                 </td>
             </tr>
 
@@ -334,8 +334,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:36</a></div>
                 </td>
             </tr>
 
@@ -373,8 +373,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:22</a></div>
                 </td>
             </tr>
 
@@ -412,8 +412,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:40</a></div>
                 </td>
             </tr>
 
@@ -454,7 +454,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -486,7 +486,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -513,7 +513,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -540,7 +540,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/scan/pdf-frame-scan/pdf-frame-scan.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -567,7 +567,6 @@ import { DocumentsService } from &#x27;../../documents.service&#x27;;
 })
 export class PdfFrameScanComponent implements OnInit {
 
-  // pdfSrc: string &#x3D; &#x27;./assets/ProblemSheet03(1).pdf&#x27;;
   pdfSrc: object;
   page &#x3D; 1;
   totalPages: number;
@@ -578,13 +577,11 @@ export class PdfFrameScanComponent implements OnInit {
   ngOnInit() {
     this.dcService.scannedPdfSubject.subscribe(
       (pdfData: Blob) &#x3D;&gt; {
-        console.log(&#x27;got pdf Data: &#x27; + pdfData);
         this.pdfSrc &#x3D; pdfData;
       }
     );
 
   }
-
 
   afterLoadComplete(pdfData: any) {
     this.totalPages &#x3D; pdfData.numPages;
@@ -660,7 +657,7 @@ export class PdfFrameScanComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><!-- <pdf-viewer [src]="pdfSrc"             [render-text]="true"            style="display: block;"            [page]="1"            [show-all]="false"            [original-size]="false"></pdf-viewer> --><div *ngIf="isLoaded" style="text-align: center;">        <button class="btn btn-outline-dark" (click)="prevPage()" [disabled]="page === 1">Prev</button>        <span>{{ page }} / {{ totalPages }}</span>        <button class="btn btn-outline-dark" (click)="nextPage()" [disabled]="page === totalPages">Next</button></div>            <pdf-viewer [src]="pdfSrc"                  style="display: block;"                  [show-all]="false"                  [page]="page"                  (after-load-complete)="afterLoadComplete($event)"      ></pdf-viewer></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PdfFrameScanComponent'};
 </script>

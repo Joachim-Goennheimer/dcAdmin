@@ -64,6 +64,16 @@
     <code>src/app/documents/doc-list/doc-list.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component that handles the information about the documents on the server.
+Impements functionalities like filtering and search.
+When the user selects a document in the table it will request the corresponding pdf
+from the server using the DocumentsService.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -191,7 +201,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -260,8 +270,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -330,8 +340,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:64</a></div>
                 </td>
             </tr>
 
@@ -402,8 +412,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:41</a></div>
                 </td>
             </tr>
 
@@ -441,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:55</a></div>
                 </td>
             </tr>
 
@@ -510,7 +520,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -542,7 +552,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -578,7 +588,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -604,7 +614,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:29</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -640,7 +650,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/documents/doc-list/doc-list.component.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -665,6 +675,12 @@ import { saveAs } from &#x27;file-saver&#x27;;
 const initialSelection &#x3D; [];
 const allowMultiSelect &#x3D; false;
 
+/**
+ * Component that handles the information about the documents on the server.
+ * Impements functionalities like filtering and search.
+ * When the user selects a document in the table it will request the corresponding pdf
+ * from the server using the DocumentsService.
+ */
 @Component({
   selector: &#x27;app-doc-list&#x27;,
   templateUrl: &#x27;./doc-list.component.html&#x27;,
@@ -711,9 +727,6 @@ export class DocListComponent implements OnInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: DocumentBP): string {
-    if (!row) {
-      // return &#x60;${this.isAllSelected() ? &#x27;select&#x27; : &#x27;deselect&#x27;} all&#x60;;
-    }
     return &#x60;${this.selection.isSelected(row) ? &#x27;deselect&#x27; : &#x27;select&#x27;} row ${row.year + 1}&#x60;;
   }
 }
@@ -803,7 +816,7 @@ export class DocListComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><mat-form-field>    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"></mat-form-field>  <div class="mat-elevation-z8">    <table mat-table [dataSource]="dataSource" matSort>                <ng-container matColumnDef="year">          <th mat-header-cell *matHeaderCellDef mat-sort-header>Year</th>          <td mat-cell *matCellDef="let element"> {{element.year}} </td>        </ng-container>              <ng-container matColumnDef="month">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Month</th>            <td class="center-content" mat-cell *matCellDef="let element"> {{element.month}} </td>          </ng-container>        <ng-container matColumnDef="institution">          <th mat-header-cell *matHeaderCellDef mat-sort-header>Institution</th>          <td mat-cell *matCellDef="let element"> {{element.institution}} </td>        </ng-container>        <ng-container matColumnDef="title">            <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Title</th>            <td class="center-content" mat-cell *matCellDef="let element"> {{element.title}} </td>          </ng-container>              <ng-container matColumnDef="importance">          <th mat-header-cell *matHeaderCellDef mat-sort-header>Imptc</th>          <td class="center-content" mat-cell *matCellDef="let element"> {{element.importance}} </td>        </ng-container>                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="toggleAndLoad(row)"></tr>      </table>      <mat-paginator [pageSizeOptions]="[10, 5, 15]" showFirstLastButtons></mat-paginator></div>      </div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DocListComponent'};
 </script>

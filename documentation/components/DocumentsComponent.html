@@ -241,7 +241,6 @@ export class DocumentsComponent implements OnInit {
 &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
 
     &lt;div class&#x3D;&quot;row justify-content-between top-buffer&quot;&gt;
-        &lt;!-- &lt;div class&#x3D;&quot;col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2&quot;&gt; --&gt;
         &lt;div class&#x3D;&quot;col-xs-12 col-sm-12 col-md-5&quot;&gt;
             &lt;div class&#x3D;&quot;row justify-content-between&quot;&gt;
                 &lt;div class&#x3D;&quot;col-xs-12 col-sm-12 col-md-12 docListArea&quot;&gt;
@@ -249,39 +248,13 @@ export class DocumentsComponent implements OnInit {
                 &lt;/div&gt;
             &lt;/div&gt;
 
-            &lt;!-- &lt;app-data-summary&gt;&lt;/app-data-summary&gt;             --&gt;
         &lt;/div&gt;
 
         &lt;div class&#x3D;&quot;col-xs-12 col-sm-12 col-md-6 pdfFrameArea&quot;&gt;
                 &lt;app-pdf-frame&gt;&lt;/app-pdf-frame&gt;            
         &lt;/div&gt;
     &lt;/div&gt;
-
-
-
-
-
-&lt;!-- &lt;div class&#x3D;&quot;container-fluid&quot;&gt;
-        &lt;h1&gt;Document View&lt;/h1&gt;
-        &lt;hr&gt;
-        &lt;div class&#x3D;&quot;row justify-content-between&quot;&gt;
-                &lt;div class&#x3D;&quot;col-xs-12 col-sm-10 col-md-7 navigationArea&quot;&gt;
-                    &lt;h1&gt;Navigation&lt;/h1&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;col-xs-8 col-sm-6 col-md-4 detailsArea&quot;&gt;
-                    &lt;h1&gt;Document Details&lt;/h1&gt;
-                &lt;/div&gt;
-        &lt;/div&gt;
-    
-        &lt;div class&#x3D;&quot;row justify-content-between top-buffer&quot;&gt;
-            &lt;div class&#x3D;&quot;col-xs-9 col-sm-7 col-md-3 docListArea&quot;&gt;
-                &lt;h1&gt;Document List&lt;/h1&gt;
-            &lt;/div&gt;
-    
-            &lt;div class&#x3D;&quot; col-xs-11 col-sm-9 col-md-8 pdfFrameArea&quot;&gt;
-                    &lt;app-pdf-frame&gt;&lt;/app-pdf-frame&gt;            
-            &lt;/div&gt;
-        &lt;/div&gt; --&gt;</code></pre>
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -348,8 +321,8 @@ $dark-grey-green: #687864
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">    <div class="row justify-content-between top-buffer">        <!-- <div class="col-xs-10 col-sm-8 col-md-6 col-sm-offset-1 col-md-offset-2"> -->        <div class="col-xs-12 col-sm-12 col-md-5">            <div class="row justify-content-between">                <div class="col-xs-12 col-sm-12 col-md-12 docListArea">                    <app-doc-list></app-doc-list>                </div>            </div>            <!-- <app-data-summary></app-data-summary>             -->        </div>        <div class="col-xs-12 col-sm-12 col-md-6 pdfFrameArea">                <app-pdf-frame></app-pdf-frame>                    </div>    </div><!-- <div class="container-fluid">        <h1>Document View</h1>        <hr>        <div class="row justify-content-between">                <div class="col-xs-12 col-sm-10 col-md-7 navigationArea">                    <h1>Navigation</h1>                </div>                <div class="col-xs-8 col-sm-6 col-md-4 detailsArea">                    <h1>Document Details</h1>                </div>        </div>            <div class="row justify-content-between top-buffer">            <div class="col-xs-9 col-sm-7 col-md-3 docListArea">                <h1>Document List</h1>            </div>                <div class=" col-xs-11 col-sm-9 col-md-8 pdfFrameArea">                    <app-pdf-frame></app-pdf-frame>                        </div>        </div> --></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid">    <div class="row justify-content-between top-buffer">        <div class="col-xs-12 col-sm-12 col-md-5">            <div class="row justify-content-between">                <div class="col-xs-12 col-sm-12 col-md-12 docListArea">                    <app-doc-list></app-doc-list>                </div>            </div>        </div>        <div class="col-xs-12 col-sm-12 col-md-6 pdfFrameArea">                <app-pdf-frame></app-pdf-frame>                    </div>    </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DocumentsComponent'};
 </script>

@@ -35,7 +35,7 @@ describe('workspace-project App', () => {
   it('should not register a user without entering a First Name', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('');
     page.setRegisterLastName('lastName');
     page.setRegisterEMail('test@test.de');
@@ -48,7 +48,7 @@ describe('workspace-project App', () => {
   it('should not register a user without entering a Last Name', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('firstName');
     page.setRegisterLastName('');
     page.setRegisterEMail('test@test.de');
@@ -61,7 +61,7 @@ describe('workspace-project App', () => {
   it('should not register a user without valid email address', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('firstName');
     page.setRegisterLastName('lastName');
     page.setRegisterEMail('test.de');
@@ -74,7 +74,7 @@ describe('workspace-project App', () => {
   it('should not register a user without valid password', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('firstName');
     page.setRegisterLastName('lastName');
     page.setRegisterEMail('test@test.de');
@@ -87,7 +87,7 @@ describe('workspace-project App', () => {
   it('should not register a user if password and confirm password are not equal', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('firstName');
     page.setRegisterLastName('lastName');
     page.setRegisterEMail('test@test.de');
@@ -100,7 +100,7 @@ describe('workspace-project App', () => {
   it('should register a user if all inputs were entered correctly', () => {
     page.navigateTo();
     page.getRegisterNavigationButton().click();
-    page.setRegisterUsername('username');
+    page.setRegisterUsername('testUser12131415');
     page.setRegisterFirstName('firstName');
     page.setRegisterLastName('lastName');
     page.setRegisterEMail('test@test.de');
@@ -120,7 +120,7 @@ describe('workspace-project App', () => {
 
   it('should not log in a user if he enters the wrong password', () => {
     page.navigateTo();
-    page.setLoginEMailOrUsername('username');
+    page.setLoginEMailOrUsername('testUser12131415');
     page.setLoginPassword('notaPassword');
     page.clickSignInButton();
     expect(page.getLoginTitleText()).toEqual('Sign In');

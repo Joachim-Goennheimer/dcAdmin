@@ -31,7 +31,24 @@
                    <div class="content-data">
 
 <h1 id="dcadmin">DcAdmin</h1>
+<p>Matrikel-Nr: 3406999
+Matrikel-Nr: 5483613</p>
 <p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.3.7.</p>
+<p>Certain features are not yet fully developed or need some more refinement to be production ready.</p>
+<p>You can find the complete documentation in the folder documentation. Opening index.html will provide an interface for viewing the documentation properly.
+The documentation can be updated after changes by running <code>npm run compodoc</code></p>
+<h2 id="running-the-application">Running the application</h2>
+<p>You have to have the Chrome browser installed because the tests utilize Chrome.</p>
+<ol>
+<li>run <code>npm i</code> to install dependencies</li>
+<li>run <code>npm run gulp-run</code> to build and run docker container and to start the application</li>
+<li>go to localhost:4200</li>
+</ol>
+<p>After completing the build process the application needs a few seconds for the docker container to be ready. If localhost:4200 does not open the application, wait a few seconds and reload the page.</p>
+<h2 id="stopping-the-application">Stopping the application</h2>
+<p>To stop the application run <code>npm run gulp-stop</code>
+To start the application again run <code>npm run gulp-start</code>
+To stop the application and destroy the docker containers and images run <code>npm run gulp-destroy</code></p>
 <h2 id="development-server">Development server</h2>
 <p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
 <h2 id="code-scaffolding">Code scaffolding</h2>

@@ -7,9 +7,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Certain features are not yet fully developed or need some more refinement to be production ready.
 
+You can find the complete documentation in the folder documentation. Opening index.html will provide an interface for viewing the documentation properly.
+The documentation can be updated after changes by running `npm run compodoc`
+
 ## Running the application
 
-First the dcadmin-backend has to be installed and it needs to be running. Otherwise the e2e tests will fail and the build not work.
 You have to have the Chrome browser installed because the tests utilize Chrome.
 
 1. run `npm i` to install dependencies

@@ -288,14 +288,17 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/auth/signup/signup.component.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/auth/signup/signup.component.ts:27</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-description"><p>Method invoked when user presses register. Calls authservice to check if passwords are the same.
+So far no check whether username already in use.</p>
+</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -305,6 +308,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -319,6 +323,10 @@
                                     </td>
 
 
+                                    <td>
+                                        <p>holds login data from html form</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -396,6 +404,11 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Method invoked when user presses register. Calls authservice to check if passwords are the same.
+   * So far no check whether username already in use.
+   * @param form holds login data from html form
+   */
   onSignup(form: NgForm) {
     const email &#x3D; form.value.email;
     const username &#x3D; form.value.userName;
@@ -508,7 +521,7 @@ input.ng-invalid.ng-touched
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><h1 class="top-buffer">Sign Up</h1><hr><div class="container">    <div class="row justify-content-center">        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">            <form (ngSubmit)="onSignup(f)" #f="ngForm">                <div class="form-group">                    <label for="userName">Username</label>                    <input type="text" id="userName" name="userName" class="form-control" ngModel #userName="ngModel" required minlength="5">                    <span class="help-block" *ngIf="!userName.valid && userName.errors.minlength">Please enter a valid Username</span>                </div>                <div class="form-group">                        <label for="firstName">First Name</label>                        <input type="text" id="firstName" name="firstName" class="form-control" ngModel #firstName="ngModel" required minlength="1">                        <span class="help-block" *ngIf="!firstName.valid && firstName.errors.minlength">Please enter your first name</span>                </div>                <div class="form-group">                        <label for="lastName">Last Name</label>                        <input type="text" id="lastName" name="lastName" class="form-control" ngModel #lastName="ngModel" required minlength="1">                        <span class="help-block" *ngIf="!lastName.valid && lastName.errors.minlength">Please enter your last name</span>                </div>                <div class="form-group">                    <label for="email">E-Mail</label>                    <input type="email" id="email" name="email" class="form-control" ngModel #email="ngModel" required email>                    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid E-Mail address</span>                </div>                <div class="form-group">                        <label for="password">Password</label>                        <input type="password" id="password" name="password" class="form-control" ngModel required minlength="7">                </div>                <div class="form-group">                        <label for="confirmPassword">Confirm Password</label>                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" ngModel required>                </div>                <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign up</button>                <hr>                <span>{{signUpMessage}}</span>            </form>        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignupComponent'};
 </script>

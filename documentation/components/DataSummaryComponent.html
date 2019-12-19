@@ -64,6 +64,14 @@
     <code>src/app/overview/data-summary/data-summary.component.ts</code>
 </p>
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component that retrieves some summary data from the server using the DataSummaryService
+and then displays it to the user.</p>
+
+    </p>
 
 
     <p class="comment">
@@ -176,7 +184,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -245,8 +253,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:21</a></div>
                 </td>
             </tr>
 
@@ -293,7 +301,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/overview/data-summary/data-summary.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -310,6 +318,10 @@
 import { DataSummaryService } from &#x27;./data-summary.service&#x27;;
 import { DataSummaryModel } from &#x27;./data-summary.model&#x27;;
 
+/**
+ * Component that retrieves some summary data from the server using the DataSummaryService
+ * and then displays it to the user.
+ */
 @Component({
   selector: &#x27;app-data-summary&#x27;,
   templateUrl: &#x27;./data-summary.component.html&#x27;,
@@ -336,9 +348,7 @@ export class DataSummaryComponent implements OnInit {
         },
         (error) &#x3D;&gt; console.log(error)
         );
-
   }
-
 }
 </code></pre>
     </div>
@@ -348,9 +358,9 @@ export class DataSummaryComponent implements OnInit {
     &lt;li&gt;User: {{ dataSummary.username }}&lt;/li&gt;
     &lt;li&gt;First Name: {{ dataSummary.firstName }}&lt;/li&gt;
     &lt;li&gt;Last Name: {{ dataSummary.lastName }}&lt;/li&gt;
-    &lt;li&gt;Last time logged in: {{ dataSummary.lastLoogedIn }}&lt;/li&gt;
+    &lt;li&gt;Last time logged in: {{ dataSummary.lastLoggedIn }}&lt;/li&gt;
     &lt;li&gt;Total To-Dos: {{ dataSummary.totalToDosCount }}&lt;/li&gt;
-    &lt;li&gt;Total Documents: {{ dataSummary.totalDocumentsCount }}&lt;/li&gt;
+    &lt;li&gt;Total Documents: {{ dataSummary.totalDocumentCount }}&lt;/li&gt;
     &lt;li&gt;E-Mail address linked to account: {{ dataSummary.email }}&lt;/li&gt;
 &lt;/ul&gt;</code></pre>
     </div>
@@ -387,8 +397,8 @@ export class DataSummaryComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ul>    <li>User: {{ dataSummary.username }}</li>    <li>First Name: {{ dataSummary.firstName }}</li>    <li>Last Name: {{ dataSummary.lastName }}</li>    <li>Last time logged in: {{ dataSummary.lastLoogedIn }}</li>    <li>Total To-Dos: {{ dataSummary.totalToDosCount }}</li>    <li>Total Documents: {{ dataSummary.totalDocumentsCount }}</li>    <li>E-Mail address linked to account: {{ dataSummary.email }}</li></ul></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocDetailsComponent', 'selector': 'app-doc-details'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocNavigationComponent', 'selector': 'app-doc-navigation'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
+        var COMPONENT_TEMPLATE = '<div><ul>    <li>User: {{ dataSummary.username }}</li>    <li>First Name: {{ dataSummary.firstName }}</li>    <li>Last Name: {{ dataSummary.lastName }}</li>    <li>Last time logged in: {{ dataSummary.lastLoggedIn }}</li>    <li>Total To-Dos: {{ dataSummary.totalToDosCount }}</li>    <li>Total Documents: {{ dataSummary.totalDocumentCount }}</li>    <li>E-Mail address linked to account: {{ dataSummary.email }}</li></ul></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DataSummaryComponent', 'selector': 'app-data-summary'},{'name': 'DocListComponent', 'selector': 'app-doc-list'},{'name': 'DocumentFormComponent', 'selector': 'app-document-form'},{'name': 'DocumentsComponent', 'selector': 'app-documents'},{'name': 'ImportControlComponent', 'selector': 'app-import-control'},{'name': 'NavigationComponent', 'selector': 'app-navigation'},{'name': 'OverviewComponent', 'selector': 'app-overview'},{'name': 'PdfFrameComponent', 'selector': 'app-pdf-frame'},{'name': 'PdfFrameScanComponent', 'selector': 'app-pdf-frame-scan'},{'name': 'ScanComponent', 'selector': 'app-scan'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'ToDoListComponent', 'selector': 'app-to-do-list'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DataSummaryComponent'};
 </script>
