@@ -13,6 +13,8 @@ The documentation can be updated after changes by running `npm run compodoc`
 ## Running the application
 
 You have to have the Chrome browser installed because the tests utilize Chrome.
+The application uses docker. You have to have docker installed in order for the automatic build process to work.
+You can however also start the application without docker using the `ng serve` command.
 
 1. run `npm i` to install dependencies
 2. run `npm run gulp-run` to build and run docker container and to start the application
