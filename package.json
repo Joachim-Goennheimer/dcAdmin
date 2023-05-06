@@ -34,7 +34,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "bootstrap": "^4.3.1",
     "file-saver": "^2.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jsdoc": "^3.6.3",
     "moment": "^2.24.0",
     "ng2-pdf-viewer": "^5.3.4",
